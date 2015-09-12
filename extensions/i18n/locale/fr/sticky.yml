@@ -1,0 +1,8 @@
+sticky:
+  discussion_stickied_notification: "{username} a épinglé"
+  discussion_stickied_post: "{username} a épinglé la discussion."
+  discussion_unstickied_post: "{username} a désépinglé la discussion."
+  notify_discussion_stickied: Quelqu'un désépingle une discussion que j'ai démarré
+  stickied: Épinglé
+  sticky: Épingler
+  unsticky: Désépingler

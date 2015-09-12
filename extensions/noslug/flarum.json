@@ -1,0 +1,23 @@
+{
+    "name": "noslug",
+    "title": "No Slug",
+    "description": "removing slug from discussion url",
+    "keywords": [
+
+    ],
+    "version": "0.1.0",
+    "author": {
+        "name": "s12g",
+        "email": "admin@sthinteresting.com",
+        "homepage": ""
+    },
+    "license": "MIT",
+    "require": {
+        "flarum": ">0.1.0-beta"
+    },
+    "icon": {
+        "name": "chain-broken",
+        "backgroundColor": "#222",
+        "color": "#fff"
+    }
+}

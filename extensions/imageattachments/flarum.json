@@ -1,0 +1,24 @@
+{
+    "name": "imageattachments",
+    "title": "Image Attachments",
+    "description": "Allow users to paste/drop image attachments while posting.",
+    "keywords": [
+	"image",
+	"attachment"
+    ],
+    "version": "0.1.0",
+    "author": {
+        "name": "sthinteresting",
+        "email": "admin@sthinteresting.com",
+        "homepage": ""
+    },
+    "license": "MIT",
+    "require": {
+        "flarum": ">0.1.0-beta"
+    },
+    "icon": {
+        "name": "file-image-o",
+        "backgroundColor": "#1F78FF",
+        "color": "#fff"
+    }
+}

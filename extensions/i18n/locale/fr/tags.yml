@@ -1,0 +1,18 @@
+tags:
+  discussion_tagged_post:
+    one: "{username} {action} balise."
+    other: "{username} {action} balises."
+  added_tags: "a ajouté {tags}"
+  removed_tags: "a supprimé {tags}"
+  tag_new_discussion_title: Sélectionner des balises pour votre discussion
+  edit_discussion_tags_title: "Éditer les balises pour {title}"
+  edit_discussion_tags_link: Éditer les balises
+  choose_primary_tags:
+    one: Sélectionner une balise principale
+    other: "Sélectionner {count} balises principales"
+  choose_secondary_tags:
+    one: Sélectionner une balise secondaire
+    other: "Sélectionner {count} balises secondaires"
+  confirm: Confirmer
+  more: Plus...
+  deleted: Supprimé

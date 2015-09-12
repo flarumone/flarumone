@@ -1,0 +1,30 @@
+# WINDOWS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# MAC OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# LINUX
+*~
+.directory
+
+# NOTEPAD++
+*.bak
+
+# GIT
+.git
+
+# EXTENSION
+composer.phar

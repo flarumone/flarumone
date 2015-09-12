@@ -1,0 +1,24 @@
+{
+    "name": "likesearch",
+    "title": "Like Search",
+    "description": "Use like to search.",
+    "keywords": [
+        "search",
+        "chinese"
+    ],
+    "version": "0.1.0",
+    "author": {
+        "name": "s12g",
+        "email": "admin@sthinteresting.com",
+        "homepage": "https://github.com/sthinteresting"
+    },
+    "license": "MIT",
+    "require": {
+        "flarum": ">0.1.0-beta"
+    },
+    "icon": {
+        "name": "search",
+        "backgroundColor": "#CC6666",
+        "color": "#fff"
+    }
+}

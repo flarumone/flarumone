@@ -1,0 +1,12 @@
+likes:
+  post_liked_notification: "{username} 赞了您的内容"
+  post_likes_modal_title: 点赞的用户
+  post_liked_by_self: "{users} 赞了它"
+  post_liked_by:
+    one: "{users} 赞了它"
+    other: "{users} 赞了它"
+  unlike_action: 取消点赞
+  like_action: 点赞
+  notify_post_liked: 有人赞了我的内容
+  others: "{count} 个人"
+  you: 您

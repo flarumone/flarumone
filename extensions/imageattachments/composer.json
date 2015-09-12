@@ -1,0 +1,7 @@
+{
+    "autoload": {
+        "psr-4": {
+            "S12g\\ImageAttachments\\": "src/"
+        }
+    }
+}

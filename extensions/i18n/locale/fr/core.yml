@@ -1,0 +1,111 @@
+core:
+  account: Compte
+  activity: Activité
+  administration: Administration
+  alert: Alerte
+  all_discussions: Toutes les discussions
+  before_log_in_link: Déjà inscrit ?
+  before_sign_up_link: Pas encore inscrit ?
+  bio_placeholder: Rédigez quelque chose vous concernant
+  cannot_reply: Impossible de répondre
+  cannot_reply_help: Vous n'avez pas la permission de répondre à cette discussion.
+  change_email: Modifier l'adresse e-mail
+  change_password: Modifier le mot de passe
+  change_password_help: Cliquez sur le bouton ci-dessous et accédez au lien dans l'e-mail que nous vous avons envoyé pour modifier votre mot de passe.
+  close: Fermer
+  confirm_delete_discussion: Êtes-vous sûr de vouloir supprimer cette discussion ?
+  confirm_discard_discussion: Vous n'avez pas publié votre discussion. Souhaitez-vous l'abandonner ?
+  confirm_discard_edit: Vous n'avez pas enregistré vos modifications. Souhaitez-vous les abandonner ?
+  confirm_discard_reply: Vous n'avez pas publié votre réponse. Souhaitez-vous l'abandonner ?
+  confirmation_email_sent: "Nous avons envoyé un e-mail de confirmation à {email}. Si vous ne le recevez pas dans les quelques minutes qui suivent, vérifiez le contenu de votre dossier contenant les e-mails indésirables."
+  controls: Contrôles
+  delete: Supprimer
+  delete_forever: Supprimer définitivement
+  deleted: "[supprimé]"
+  disclose_online: Autoriser les autres à voir que je suis en ligne
+  discussion_renamed_post: "{username} a modifié le titre de {old} à {new}."
+  discussion_renamed_notification: "{username} a modifié le titre"
+  discussion_replied: "Dernière réponse {ago} par {username}"
+  discussion_started: "Démarré {ago} par {username}"
+  discussion_title: Titre de la discussion
+  discussions: Discussions
+  dismiss: Abandonner
+  edit: Éditer
+  editing_post: "Message #{number} dans {discussion}"
+  email: E-mail
+  email_confirmation_required: "Vous devez confirmer votre adresse e-mail avant de pouvoir vous connecter. Nous avons envoyé un e-mail de confirmation à {email}. Si vous ne le recevez pas dans les quelques minutes qui suivent, vérifiez le contenu de votre dossier contenant les e-mails indésirables."
+  exit_full_screen: Quitter le mode plein écran
+  forgot_password: Mot de passe oublié
+  forgot_password_help: Saisissez votre adresse e-mail pour que nous vous envoyons un lien qui vous permettra de réinitialiser votre mot de passe.
+  forgot_password_link: Mot de passe oublié ?
+  full_screen: Plein écran
+  go_to: "Aller à {location}"
+  group_admin: Administrateur
+  group_admins: Administrateurs
+  group_guest: Invité
+  group_guests: Invités
+  group_member: Membre
+  group_members: Membres
+  group_mod: Modérateur
+  group_mods: Modérateurs
+  invalid_login: Vos informations de connexion sont incorrectes.
+  joined: "Inscrit {ago}"
+  joined_the_forum: Inscrit au forum
+  load_more: Charger davantage
+  log_in: Connexion
+  log_in_to_reply: Se connecter pour répondre
+  log_out: Déconnexion
+  mark_all_as_read: Tout marquer comme lu
+  mark_as_read: Marquer comme lu
+  minimize: Réduire
+  no_notifications: Aucune notification
+  notifications: Notifications
+  notify_discussion_renamed: Quelqu'un renomme une discussion que j'ai démarrée
+  now: Maintenant
+  online: En ligne
+  original_post: Message original
+  password: Mot de passe
+  password_reset_email_sent: Nous vous avons envoyé un e-mail contenant un lien pour réinitialiser votre mot de passe. Si vous ne le recevez pas dans les quelques minutes qui suivent, vérifiez le contenu de votre dossier contenant les e-mails indésirables.
+  period_later: "{period} plus tard"
+  post_discussion: Publier une discussion
+  post_edited: "Édité {ago} par {username}"
+  post_number: "Message #{number}"
+  post_reply: Publier une réponse
+  posted_a_reply: A publié une réponse
+  posts: Messages
+  powered_by_flarum: Propulsé par Flarum
+  privacy: Confidentialité
+  profile: Profil
+  prompt_rename_discussion: Saisissez un nouveau titre pour cette discussion :
+  recover_password: Récupérer un mot de passe
+  refresh: Actualiser
+  remove: Supprimer
+  rename: Renommer
+  reply: Répondre
+  reply_posted: Votre réponse a été publiée.
+  restore: Restaurer
+  save_changes: Enregistrer les modifications
+  search_all_discussions: 'Rechercher "{query}" dans toutes les discussions'
+  search_forum: Rechercher dans le forum
+  send_password_reset_email: Envoyer l'e-mail de réinitialisation du mot de passe
+  settings: Réglages
+  sign_up: Inscription
+  sort_latest: Récent
+  sort_newest: Nouveauté
+  sort_oldest: Ancienneté
+  sort_relevance: Pertinence
+  sort_top: Popularité
+  start_a_discussion: Démarrer une discussion
+  started_a_discussion: A démarré une discussion
+  unread_posts: "{count} non lus"
+  upload: Transférer
+  username: Nom d'utilisateur
+  username_or_email: Nom d'utilisateur ou e-mail
+  users: Utilisateurs
+  view: Voir
+  viewing_posts:
+    one: "{index} de {count} message"
+    other: "{index} de {count} messages"
+  welcome_user: "Bienvenue {username} !"
+  write_a_post: Rédiger un message...
+  write_a_reply: Rédiger une réponse...

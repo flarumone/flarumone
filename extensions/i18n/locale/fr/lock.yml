@@ -1,0 +1,8 @@
+lock:
+  discussion_locked_notification: "{username} a verrouillé"
+  discussion_locked_post: "{username} a verrouillé la discussion."
+  discussion_unlocked_post: "{username} a déverrouillé la discussion."
+  notify_discussion_locked: Quelqu'un verrouille une discussion que j'ai démarré
+  locked: Verrouillé
+  lock: Verrouiller
+  unlock: Déverrouiller

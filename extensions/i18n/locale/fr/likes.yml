@@ -1,0 +1,12 @@
+likes:
+  post_liked_notification: "{username} a aimé votre message"
+  post_likes_modal_title: Utilisateurs qui aiment ça
+  post_liked_by_self: "{users} aime ça."
+  post_liked_by:
+    one: "{users} aime ça."
+    other: "{users} aiment ça."
+  unlike_action: Ne plus aimer
+  like_action: Aimer
+  notify_post_liked: Quelqu'un aime mon message
+  others: "{count} autres"
+  you: Vous

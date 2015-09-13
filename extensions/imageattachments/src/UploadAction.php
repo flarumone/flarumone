@@ -1,6 +1,6 @@
 <?php namespace S12g\ImageAttachments;
 
-use Flarum\Api\Actions\JsonApiAction;
+use Flarum\Api\Actions\Action;
 use Flarum\Api\Request;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Zend\Diactoros\Response\JsonResponse;
@@ -12,7 +12,7 @@ use League\Flysystem\MountManager;
 use Illuminate\Support\Str;
 use Flarum\Core;
 
-class UploadAction extends JsonApiAction {
+class UploadAction implements Action {
     protected $bus;
     
     public function __construct(Dispatcher $bus)
@@ -20,7 +20,7 @@ class UploadAction extends JsonApiAction {
         $this->bus = $bus;
     }
     
-    protected function respond(Request $request)
+    public function handle(Request $request)
     {
         $images = $request->http->getUploadedFiles()['images'];
         $results = [];

@@ -3,19 +3,16 @@
 **[FlarumOne](http://flarumone.com) 基于 Flarum 轻论坛的中文增强发行版**
 Flarum 是一款优雅简洁论坛软件，让在线交流变得更加轻松愉快
 FlarumOne 主要亮点是尽可能的适应国内使用场景，首先对其进行汉化并使其支持多语言切换，其次优化中文搜索，并改默认google字体的cdn为360提供，提升国内用户的加载速度
-后续将扩展中文分词搜索，中文标题帖子url的拼音化，手机号码注册账号，国内第三方登陆
+后续将扩展中文分词搜索，手机号码注册账号，国内第三方登陆
 
-[功能](http://flarumone.com/features) -
-[下载](http://flarumone.com/download) -
-[文档](http://flarumone.com/docs) -
-[支持](http://discuss.flarumone.com)
+[下载](https://github.com/flarumone/flarumone/releases) - [文档](http://docs.flarumone.com) - [支持](http://flarumone.com)
 
 ![截图](http://flarum.org/img/screenshot.png)
 
 ## 安装
 > **FlarumOne 目前处于测试阶段，因此不要将它用在生产环境中。**
 
-想立即使用 FlarumOne，可以到[下载](http://flarumone.com/download)页面。
+想立即使用 FlarumOne，可以到[下载](https://github.com/flarumone/flarumone/releases)页面。
 你需要一个安装了 **PHP 5.5+** 和 **MySQL 5.5+** 的服务器。
 
 ## 亮点

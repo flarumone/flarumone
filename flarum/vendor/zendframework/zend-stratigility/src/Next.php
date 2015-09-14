@@ -9,12 +9,10 @@
 
 namespace Zend\Stratigility;
 
-use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RuntimeException;
 use SplQueue;
-use Zend\Diactoros\Uri;
 
 /**
  * Iterate a queue of middlewares and execute them.
@@ -42,12 +40,16 @@ class Next
     private $removed = '';
 
     /**
+     * Constructor.
+     *
+     * Clones the queue provided to allow re-use.
+     *
      * @param SplQueue $queue
      * @param callable $done
      */
     public function __construct(SplQueue $queue, callable $done)
     {
-        $this->queue    = $queue;
+        $this->queue    = clone $queue;
         $this->done     = $done;
 
         $this->dispatch = new Dispatch();
@@ -116,10 +118,10 @@ class Next
     /**
      * Reset the path, if a segment was previously stripped
      *
-     * @param Http\Request $request
-     * @return Http\Request
+     * @param ServerRequestInterface $request
+     * @return ServerRequestInterface
      */
-    private function resetPath(Http\Request $request)
+    private function resetPath(ServerRequestInterface $request)
     {
         if (! $this->removed) {
             return $request;
@@ -169,11 +171,11 @@ class Next
     /**
      * Strip the route from the request path
      *
-     * @param Http\Request $request
+     * @param ServerRequestInterface $request
      * @param string $route
-     * @return Http\Request
+     * @return ServerRequestInterface
      */
-    private function stripRouteFromPath(Http\Request $request, $route)
+    private function stripRouteFromPath(ServerRequestInterface $request, $route)
     {
         $this->removed = $route;
 

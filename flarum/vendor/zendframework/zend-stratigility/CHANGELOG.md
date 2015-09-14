@@ -6,6 +6,27 @@ Versions prior to 1.0 were originally released as `phly/conduit`; please visit
 its [CHANGELOG](https://github.com/phly/conduit/blob/master/CHANGELOG.md) for
 details.
 
+## 1.1.1 - 2015-08-25
+
+### Added
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#25](https://github.com/zendframework/zend-stratigility/pull/25) modifies the
+  constructor of `Next` to clone the incoming `SplQueue` instance, ensuring the
+  original can be re-used for subsequent invocations (e.g., within an async
+  listener environment such as React).
+
 ## 1.1.0 - 2015-06-25
 
 ### Added

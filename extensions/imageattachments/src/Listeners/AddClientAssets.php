@@ -15,6 +15,7 @@ class AddClientAssets
     public function addLocale(RegisterLocales $event)
     {
         $event->addTranslations('en', __DIR__.'/../../locale/en.yml');
+        $event->addTranslations('zh-CN', __DIR__.'/../../locale/zh-CN.yml');
     }
 
     public function addAssets(BuildClientView $event)

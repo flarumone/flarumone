@@ -92,6 +92,60 @@ function encode(str)
 }
 
 /**
+* Return the length of the markup at the end of an ATX header
+*
+* @param  {!number} startPos Start of the header's text
+* @param  {!number} endPos   End of the header's text
+* @return {!number}
+*/
+function getAtxHeaderEndTagLen(startPos, endPos)
+{
+	var content = text.substr(startPos, endPos - startPos),
+		m = /[ \t]*#*[ \t]*$/.exec(content);
+
+	return m[0].length;
+}
+
+/**
+* Get emphasis markup split by block
+*
+* @param  {!RegExp} regexp Regexp used to match emphasis
+* @param  {!number} pos    Position in the text of the first emphasis character
+* @return {!Array}         Each array contains a list of [matchPos, matchLen] pairs
+*/
+function getEmphasisByBlock(regexp, pos)
+{
+	var block    = [],
+		blocks   = [],
+		breakPos = breakPos  = text.indexOf("\x17", pos),
+		m;
+
+	regexp.lastIndex = pos;
+	while (m = regexp.exec(text))
+	{
+		var matchPos = m['index'],
+			matchLen = m[0].length;
+
+		// Test whether we've just passed the limits of a block
+		if (matchPos > breakPos)
+		{
+			blocks.push(block);
+			block    = [];
+			breakPos = text.indexOf("\x17", matchPos);
+		}
+
+		// Test whether we should ignore this markup
+		if (!ignoreEmphasis(matchPos, matchLen))
+		{
+			block.push([matchPos, matchLen]);
+		}
+	}
+	blocks.push(block);
+
+	return blocks;
+}
+
+/**
 * Capture lines that contain a Setext-tyle header
 *
 * @return {!Object}
@@ -136,18 +190,21 @@ function getSetextLines()
 }
 
 /**
-* Return the length of the markup at the end of an ATX header
+* Test whether emphasis should be ignored at the given position in the text
 *
-* @param  {!number} startPos Start of the header's text
-* @param  {!number} endPos   End of the header's text
-* @return {!number}
+* @param  {!number}  matchPos Position of the emphasis in the text
+* @param  {!number}  matchLen Length of the emphasis
+* @return {!boolean}
 */
-function getAtxHeaderEndTagLen(startPos, endPos)
+function ignoreEmphasis(matchPos, matchLen)
 {
-	var content = text.substr(startPos, endPos - startPos),
-		m = /[ \t]*#*[ \t]*$/.exec(content);
+	// Ignore single underscores between alphanumeric characters
+	if (text[matchPos] === '_' && matchLen === 1 && isSurroundedByAlnum(matchPos, matchLen))
+	{
+		return true;
+	}
 
-	return m[0].length;
+	return false;
 }
 
 /**
@@ -174,6 +231,29 @@ function init()
 }
 
 /**
+* Test whether given character is alphanumeric
+*
+* @param  {!string}  chr
+* @return {!boolean}
+*/
+function isAlnum(chr)
+{
+	return (' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.indexOf(chr) > 0);
+}
+
+/**
+* Test whether a length of text is surrounded by alphanumeric characters
+*
+* @param  {!number}  matchPos Start of the text
+* @param  {!number}  matchLen Length of the text
+* @return {!boolean}
+*/
+function isSurroundedByAlnum(matchPos, matchLen)
+{
+	return (matchPos > 0 && isAlnum(text[matchPos - 1]) && isAlnum(text[matchPos + matchLen]));
+}
+
+/**
 * Match block-level markup, as well as forced line breaks and headers
 */
 function matchBlockLevelMarkup()
@@ -194,6 +274,8 @@ function matchBlockLevelMarkup()
 		continuation,
 		endTag,
 		ignoreLen,
+		indentStr,
+		indentLen,
 		lfPos,
 		listIndex,
 		maxIndent,
@@ -281,13 +363,12 @@ function matchBlockLevelMarkup()
 
 		// Compute the width of the indentation
 		var indentWidth = 0,
-			indentPos   = 0,
-			indentStr,
-			indentLen;
+			indentPos   = 0;
 		if (m[2])
 		{
 			indentStr = m[2];
 			indentLen = indentStr.length;
+			maxIndent = (codeFence) ? 0 : codeIndent;
 
 			do
 			{
@@ -300,7 +381,7 @@ function matchBlockLevelMarkup()
 					indentWidth = (indentWidth + 4) & ~3;
 				}
 			}
-			while (++indentPos < indentLen && indentWidth < codeIndent);
+			while (++indentPos < indentLen && indentWidth < maxIndent);
 		}
 
 		// Test whether we're out of a code block
@@ -608,7 +689,6 @@ function matchEmphasis()
 *
 * @param  {!string} character Markup character, either * or _
 * @param  {!RegExp} regexp    Regexp used to match the series of emphasis character
-* @return void
 */
 function matchEmphasisByCharacter(character, regexp)
 {
@@ -618,142 +698,7 @@ function matchEmphasisByCharacter(character, regexp)
 		return;
 	}
 
-	var buffered = 0,
-		breakPos = text.indexOf("\x17", pos),
-		emPos,
-		emEndPos,
-		strongPos,
-		strongEndPos,
-		m;
-
-	while (m = regexp.exec(text))
-	{
-		var match     = m[0],
-			matchPos  = m['index'],
-			matchLen  = match.length;
-
-		// Test whether we've just passed the limits of a block
-		if (matchPos > breakPos)
-		{
-			// Reset the buffer then look for the next break
-			buffered = 0;
-			breakPos = text.indexOf("\x17", matchPos);
-		}
-
-		if (matchLen >= 3)
-		{
-			// Number of characters left unconsumed
-			var remaining = matchLen;
-
-			if (buffered < 3)
-			{
-				strongEndPos = emEndPos = matchPos;
-			}
-			else
-			{
-				// Determine the order of strong's and em's end tags
-				if (emPos < strongPos)
-				{
-					// If em starts before strong, it must end after it
-					strongEndPos = matchPos;
-					emEndPos     = matchPos + 2;
-				}
-				else
-				{
-					// Make strong end after em
-					strongEndPos = matchPos + 1;
-					emEndPos     = matchPos;
-
-					// If the buffer holds three consecutive characters and the order of
-					// strong and em is not defined we push em inside of strong
-					if (strongPos === emPos)
-					{
-						emPos += 2;
-					}
-				}
-			}
-
-			// 2 or 3 means a strong is buffered
-			// Strong uses the outer characters
-			if (buffered & 2)
-			{
-				addTagPair('STRONG', strongPos, 2, strongEndPos, 2);
-				remaining -= 2;
-			}
-
-			// 1 or 3 means an em is buffered
-			// Em uses the inner characters
-			if (buffered & 1)
-			{
-				addTagPair('EM', emPos, 1, emEndPos, 1);
-				--remaining;
-			}
-
-			if (!remaining)
-			{
-				buffered = 0;
-			}
-			else
-			{
-				buffered = Math.min(remaining, 3);
-
-				if (buffered & 1)
-				{
-					emPos = matchPos + matchLen - buffered; 
-				}
-
-				if (buffered & 2)
-				{
-					strongPos = matchPos + matchLen - buffered; 
-				}
-			}
-		}
-		else if (matchLen === 2)
-		{
-			if (buffered === 3 && strongPos === emPos)
-			{
-				addTagPair('STRONG', emPos + 1, 2, matchPos, 2);
-				buffered = 1;
-			}
-			else if (buffered & 2)
-			{
-				addTagPair('STRONG', strongPos, 2, matchPos, 2);
-				buffered -= 2;
-			}
-			else
-			{
-				buffered += 2;
-				strongPos = matchPos;
-			}
-		}
-		else
-		{
-			// Ignore single underscores when they are between alphanumeric ASCII chars
-			if (character === '_'
-			 && matchPos > 0
-			 && ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.indexOf(text.charAt(matchPos - 1)) > 0
-			 && ' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.indexOf(text.charAt(matchPos + 1)) > 0)
-			{
-				 continue;
-			}
-
-			if (buffered === 3 && strongPos === emPos)
-			{
-				addTagPair('EM', strongPos + 2, 1, matchPos, 1);
-				buffered = 2;
-			}
-			else if (buffered & 1)
-			{
-				addTagPair('EM', emPos, 1, matchPos, 1);
-				--buffered;
-			}
-			else
-			{
-				++buffered;
-				emPos = matchPos;
-			}
-		}
-	}
+	getEmphasisByBlock(regexp, pos).forEach(processEmphasisBlock);
 }
 
 /**
@@ -857,6 +802,10 @@ function matchInlineLinks()
 			tag.setAttribute('title', decode(m[3]));
 		}
 
+		// Give the link a slightly better priority to give it precedence over
+		// possible BBCodes such as [b](https://en.wikipedia.org/wiki/B)
+		tag.setSortPriority(-1);
+
 		// Overwrite the markup without touching the link's text
 		overwrite(startTagPos, startTagLen);
 		overwrite(endTagPos,   endTagLen);
@@ -923,4 +872,78 @@ function matchSuperscript()
 function overwrite(pos, len)
 {
 	text = text.substr(0, pos) + new Array(1 + len).join("\x1A") + text.substr(pos + len);
+}
+
+/**
+* Process a list of emphasis markup strings
+*
+* @param {!Array<!Array<!number>>} block List of [matchPos, matchLen] pairs
+*/
+function processEmphasisBlock(block)
+{
+	var buffered  = 0,
+		emPos     = -1,
+		strongPos = -1,
+		pair,
+		remaining;
+
+	block.forEach(function(pair)
+	{
+		var matchPos     = pair[0],
+			matchLen     = pair[1],
+			closeLen     = Math.min(3, matchLen),
+			closeEm      = closeLen & buffered & 1,
+			closeStrong  = closeLen & buffered & 2,
+			emEndPos     = matchPos,
+			strongEndPos = matchPos;
+
+		if (buffered > 2 && emPos === strongPos)
+		{
+			if (closeEm)
+			{
+				emPos += 2;
+			}
+			else
+			{
+				++strongPos;
+			}
+		}
+
+		if (closeEm && closeStrong)
+		{
+			if (emPos < strongPos)
+			{
+				emEndPos += 2;
+			}
+			else
+			{
+				++strongEndPos;
+			}
+		}
+
+		remaining = matchLen;
+		if (closeEm)
+		{
+			--buffered;
+			--remaining;
+			addTagPair('EM', emPos, 1, emEndPos, 1);
+		}
+		if (closeStrong)
+		{
+			buffered  -= 2;
+			remaining -= 2;
+			addTagPair('STRONG', strongPos, 2, strongEndPos, 2);
+		}
+
+		remaining = Math.min(3, remaining);
+		if (remaining & 1)
+		{
+			emPos = matchPos + matchLen - remaining;
+		}
+		if (remaining & 2)
+		{
+			strongPos = matchPos + matchLen - remaining;
+		}
+		buffered += remaining;
+	});
 }

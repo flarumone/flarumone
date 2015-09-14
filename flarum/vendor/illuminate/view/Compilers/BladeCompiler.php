@@ -98,7 +98,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
 
         $contents = $this->compileString($this->files->get($this->getPath()));
 
-        if (!is_null($this->cachePath)) {
+        if (! is_null($this->cachePath)) {
             $this->files->put($this->getCompiledPath($this->getPath()), $contents);
         }
     }
@@ -391,7 +391,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileShow($expression)
     {
-        return "<?php echo \$__env->yieldSection(); ?>";
+        return '<?php echo $__env->yieldSection(); ?>';
     }
 
     /**
@@ -413,7 +413,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileAppend($expression)
     {
-        return "<?php \$__env->appendSection(); ?>";
+        return '<?php $__env->appendSection(); ?>';
     }
 
     /**
@@ -424,7 +424,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileEndsection($expression)
     {
-        return "<?php \$__env->stopSection(); ?>";
+        return '<?php $__env->stopSection(); ?>';
     }
 
     /**
@@ -435,7 +435,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileStop($expression)
     {
-        return "<?php \$__env->stopSection(); ?>";
+        return '<?php $__env->stopSection(); ?>';
     }
 
     /**
@@ -446,7 +446,7 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileOverwrite($expression)
     {
-        return "<?php \$__env->stopSection(true); ?>";
+        return '<?php $__env->stopSection(true); ?>';
     }
 
     /**
@@ -540,6 +540,28 @@ class BladeCompiler extends Compiler implements CompilerInterface
     }
 
     /**
+     * Compile the can statements into valid PHP.
+     *
+     * @param  string  $expression
+     * @return string
+     */
+    protected function compileCan($expression)
+    {
+        return "<?php if (Gate::check{$expression}): ?>";
+    }
+
+    /**
+     * Compile the cannot statements into valid PHP.
+     *
+     * @param  string  $expression
+     * @return string
+     */
+    protected function compileCannot($expression)
+    {
+        return "<?php if (Gate::denies{$expression}): ?>";
+    }
+
+    /**
      * Compile the if statements into valid PHP.
      *
      * @param  string  $expression
@@ -616,6 +638,28 @@ class BladeCompiler extends Compiler implements CompilerInterface
     protected function compileEndforeach($expression)
     {
         return '<?php endforeach; ?>';
+    }
+
+    /**
+     * Compile the end-can statements into valid PHP.
+     *
+     * @param  string  $expression
+     * @return string
+     */
+    protected function compileEndcan($expression)
+    {
+        return '<?php endif; ?>';
+    }
+
+    /**
+     * Compile the end-cannot statements into valid PHP.
+     *
+     * @param  string  $expression
+     * @return string
+     */
+    protected function compileEndcannot($expression)
+    {
+        return '<?php endif; ?>';
     }
 
     /**
@@ -704,14 +748,14 @@ class BladeCompiler extends Compiler implements CompilerInterface
      */
     protected function compileEndpush($expression)
     {
-        return "<?php \$__env->appendSection(); ?>";
+        return '<?php $__env->appendSection(); ?>';
     }
 
     /**
-    * Get the extensions used by the compiler.
-    *
-    * @return array
-    */
+     * Get the extensions used by the compiler.
+     *
+     * @return array
+     */
     public function getExtensions()
     {
         return $this->extensions;
@@ -741,10 +785,20 @@ class BladeCompiler extends Compiler implements CompilerInterface
     }
 
     /**
-    * Gets the raw tags used by the compiler.
-    *
-    * @return array
-    */
+     * Get the list of custom directives.
+     *
+     * @return array
+     */
+    public function getCustomDirectives()
+    {
+        return $this->customDirectives;
+    }
+
+    /**
+     * Gets the raw tags used by the compiler.
+     *
+     * @return array
+     */
     public function getRawTags()
     {
         return $this->rawTags;

@@ -51,7 +51,9 @@ class Extension extends BaseExtension
                         if (file_exists($localeYml)) {
                             $event->addTranslations($languagecodes, $localeYml);
                         } else {
-                            $event->addTranslations($languagecodes, $enYml);
+                            if(file_exists($enYml)){
+                                $event->addTranslations($languagecodes, $enYml);
+                            }
                         }
                     }
                 }

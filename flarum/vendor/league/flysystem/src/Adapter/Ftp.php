@@ -154,9 +154,7 @@ class Ftp extends AbstractFtpAdapter
         $stream = fopen('php://temp', 'w+b');
         fwrite($stream, $contents);
         rewind($stream);
-
         $result = $this->writeStream($path, $stream, $config);
-
         fclose($stream);
 
         if ($result === false) {
@@ -332,6 +330,16 @@ class Ftp extends AbstractFtpAdapter
         $metadata['mimetype'] = Util::guessMimeType($path, $metadata['contents']);
 
         return $metadata;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getTimestamp($path)
+    {
+        $timestamp = ftp_mdtm($this->getConnection(), $path);
+
+        return ($timestamp !== -1) ? ['timestamp' => $timestamp] : false;
     }
 
     /**

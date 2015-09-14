@@ -9,6 +9,12 @@ return array(
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'Less' => array($vendorDir . '/oyejorge/less.php/lib'),
+    'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
+    'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
+    'Doctrine\\Common\\Collections\\' => array($vendorDir . '/doctrine/collections/lib'),
+    'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib'),
+    'Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib'),
+    'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
 );

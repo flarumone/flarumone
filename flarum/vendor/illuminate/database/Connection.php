@@ -677,6 +677,7 @@ class Connection implements ConnectionInterface
             'server has gone away',
             'no connection to the server',
             'Lost connection',
+            'is dead or not enabled',
         ]);
     }
 
@@ -732,7 +733,7 @@ class Connection implements ConnectionInterface
             $this->events->fire('illuminate.query', [$query, $bindings, $time, $this->getName()]);
         }
 
-        if (!$this->loggingQueries) {
+        if (! $this->loggingQueries) {
             return;
         }
 
@@ -774,6 +775,16 @@ class Connection implements ConnectionInterface
     protected function getElapsedTime($start)
     {
         return round((microtime(true) - $start) * 1000, 2);
+    }
+
+    /**
+     * Is Doctrine available?
+     *
+     * @return bool
+     */
+    public function isDoctrineAvailable()
+    {
+        return class_exists('Doctrine\DBAL\Connection');
     }
 
     /**

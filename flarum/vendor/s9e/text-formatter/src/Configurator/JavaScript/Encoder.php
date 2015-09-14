@@ -17,10 +17,12 @@ class Encoder
 	public $typeEncoders;
 	public function __construct()
 	{
+		$ns = 's9e\\TextFormatter\\Configurator\\';
 		$this->objectEncoders = array(
-			's9e\\TextFormatter\\Configurator\\Items\\Regexp'          => array($this, 'encodeRegexp'),
-			's9e\\TextFormatter\\Configurator\\JavaScript\\Code'       => array($this, 'encodeCode'),
-			's9e\\TextFormatter\\Configurator\\JavaScript\\Dictionary' => array($this, 'encodeDictionary')
+			$ns . 'Items\\Regexp'           => array($this, 'encodeRegexp'),
+			$ns . 'JavaScript\\Code'        => array($this, 'encodeCode'),
+			$ns . 'JavaScript\\ConfigValue' => array($this, 'encodeConfigValue'),
+			$ns . 'JavaScript\\Dictionary'  => array($this, 'encodeDictionary')
 		);
 		$this->typeEncoders = array(
 			'array'   => array($this, 'encodeArray'),
@@ -40,10 +42,11 @@ class Encoder
 	}
 	protected function encodeArray(array $array)
 	{
-		return (\array_keys($array) === \range(0, \count($array) - 1)) ? $this->encodeIndexedArray($array) : $this->encodeAssociativeArray($array);
+		return (empty($array) || \array_keys($array) === \range(0, \count($array) - 1)) ? $this->encodeIndexedArray($array) : $this->encodeAssociativeArray($array);
 	}
 	protected function encodeAssociativeArray(array $array, $preserveNames = \false)
 	{
+		\ksort($array);
 		$src = '{';
 		$sep = '';
 		foreach ($array as $k => $v)
@@ -61,6 +64,10 @@ class Encoder
 	protected function encodeCode(Code $code)
 	{
 		return (string) $code;
+	}
+	protected function encodeConfigValue(ConfigValue $configValue)
+	{
+		return ($configValue->isDeduplicated()) ? $configValue->getVarName() : $this->encode($configValue->getValue());
 	}
 	protected function encodeDictionary(Dictionary $dict)
 	{

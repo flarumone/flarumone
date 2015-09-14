@@ -5,7 +5,7 @@ Flarum 是一款优雅简洁论坛软件，让在线交流变得更加轻松愉�
 FlarumOne 主要亮点是尽可能的适应国内使用场景，首先对其进行汉化并使其支持多语言切换，其次优化中文搜索，并改默认google字体的cdn为360提供，提升国内用户的加载速度
 后续将扩展中文分词搜索，手机号码注册账号，国内第三方登陆
 
-[下载](https://github.com/flarumone/flarumone/releases) - [文档](http://docs.flarumone.com) - [支持](http://flarumone.com)
+[下载](https://github.com/flarumone/flarumone/releases) - [文档](http://php.szlt.net/flarum/index.html) - [支持](http://flarumone.com)
 
 ![截图](http://flarum.org/img/screenshot.png)
 

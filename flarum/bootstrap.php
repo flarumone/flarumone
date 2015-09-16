@@ -37,7 +37,7 @@ if (file_exists($configFile = __DIR__.'/../config.php')) {
     $app->instance('flarum.config', include $configFile);
 }
 
-date_default_timezone_set('UTC');
+date_default_timezone_set('PRC');
 
 $app->instance('config', $config = new ConfigRepository([
     'view' => [

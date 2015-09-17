@@ -1,0 +1,24 @@
+{
+	"name": "s9e-mediaembed",
+	"title": "s9e/mediaembed",
+	"description": "Embed third-party content in your Flarum.",
+	"keywords": ["embed","facebook","media","twitter","youtube"],
+	"version": "0.2.0",
+	"author": {
+		"name": "JoshyPHP"
+	},
+	"license": "MIT",
+	"require": {
+		"php": ">=5.4.0",
+		"flarum": ">0.1.0"
+	},
+	"support": {
+		"source": "https://github.com/s9e/flarum-ext-mediaembed",
+		"issues": "https://github.com/s9e/flarum-ext-mediaembed/issues"
+	},
+	"icon": {
+		"name": "youtube-play",
+		"backgroundColor": "#cc181e",
+		"color": "#fff"
+	}
+}

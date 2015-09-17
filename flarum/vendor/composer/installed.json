@@ -2249,12 +2249,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/flarum/core.git",
-            "reference": "974d301bed446f18bddb0a8f0fb678f3b7a2caaa"
+            "reference": "f4a4ed8b4990910dd7d52495c7783f7990007f11"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/flarum/core/zipball/974d301bed446f18bddb0a8f0fb678f3b7a2caaa",
-            "reference": "974d301bed446f18bddb0a8f0fb678f3b7a2caaa",
+            "url": "https://api.github.com/repos/flarum/core/zipball/f4a4ed8b4990910dd7d52495c7783f7990007f11",
+            "reference": "f4a4ed8b4990910dd7d52495c7783f7990007f11",
             "shasum": ""
         },
         "require": {
@@ -2289,7 +2289,7 @@
             "phpspec/phpspec": "^2.2",
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2015-09-16 23:41:48",
+        "time": "2015-09-17 03:27:22",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

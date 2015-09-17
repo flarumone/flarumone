@@ -45,7 +45,7 @@ class SqlitePlatform extends AbstractPlatform
      */
     public function getRegexpExpression()
     {
-        return 'RLIKE';
+        return 'REGEXP';
     }
 
     /**
@@ -655,6 +655,18 @@ class SqlitePlatform extends AbstractPlatform
         }
 
         return $sql;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function doModifyLimitQuery($query, $limit, $offset)
+    {
+        if (null === $limit && null !== $offset) {
+            return $query . ' LIMIT -1 OFFSET ' . $offset;
+        }
+
+        return parent::doModifyLimitQuery($query, $limit, $offset);
     }
 
     /**

@@ -1,0 +1,1 @@
+System.register("bbcode/main",["flarum/extend","flarum/app"],function(e){"use strict";var t,n;return{setters:[function(e){t=e.extend},function(e){n=e["default"]}],execute:function(){n.initializers.add("bbcode",function(){})}}});

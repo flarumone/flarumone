@@ -639,35 +639,37 @@
         ]
     },
     {
-        "name": "illuminate/contracts",
-        "version": "v5.1.16",
-        "version_normalized": "5.1.16.0",
+        "name": "danielstjules/stringy",
+        "version": "1.10.0",
+        "version_normalized": "1.10.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/illuminate/contracts.git",
-            "reference": "610aea16e3d91dfd85db4cf43703403a83b7cba2"
+            "url": "https://github.com/danielstjules/Stringy.git",
+            "reference": "4749c205db47ee5b32e8d1adf6d9aff8db6caf3b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/contracts/zipball/610aea16e3d91dfd85db4cf43703403a83b7cba2",
-            "reference": "610aea16e3d91dfd85db4cf43703403a83b7cba2",
+            "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/4749c205db47ee5b32e8d1adf6d9aff8db6caf3b",
+            "reference": "4749c205db47ee5b32e8d1adf6d9aff8db6caf3b",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.5.9"
+            "ext-mbstring": "*",
+            "php": ">=5.3.0"
         },
-        "time": "2015-08-31 12:59:22",
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-07-23 00:54:12",
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.1-dev"
-            }
-        },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Illuminate\\Contracts\\": ""
-            }
+                "Stringy\\": "src/"
+            },
+            "files": [
+                "src/Create.php"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -675,12 +677,24 @@
         ],
         "authors": [
             {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
+                "name": "Daniel St. Jules",
+                "email": "danielst.jules@gmail.com",
+                "homepage": "http://www.danielstjules.com"
             }
         ],
-        "description": "The Illuminate Contracts package.",
-        "homepage": "http://laravel.com"
+        "description": "A string manipulation library with multibyte support",
+        "homepage": "https://github.com/danielstjules/Stringy",
+        "keywords": [
+            "UTF",
+            "helpers",
+            "manipulation",
+            "methods",
+            "multibyte",
+            "string",
+            "utf-8",
+            "utility",
+            "utils"
+        ]
     },
     {
         "name": "doctrine/inflector",
@@ -752,37 +766,35 @@
         ]
     },
     {
-        "name": "danielstjules/stringy",
-        "version": "1.10.0",
-        "version_normalized": "1.10.0.0",
+        "name": "illuminate/contracts",
+        "version": "v5.1.16",
+        "version_normalized": "5.1.16.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/danielstjules/Stringy.git",
-            "reference": "4749c205db47ee5b32e8d1adf6d9aff8db6caf3b"
+            "url": "https://github.com/illuminate/contracts.git",
+            "reference": "610aea16e3d91dfd85db4cf43703403a83b7cba2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/4749c205db47ee5b32e8d1adf6d9aff8db6caf3b",
-            "reference": "4749c205db47ee5b32e8d1adf6d9aff8db6caf3b",
+            "url": "https://api.github.com/repos/illuminate/contracts/zipball/610aea16e3d91dfd85db4cf43703403a83b7cba2",
+            "reference": "610aea16e3d91dfd85db4cf43703403a83b7cba2",
             "shasum": ""
         },
         "require": {
-            "ext-mbstring": "*",
-            "php": ">=5.3.0"
+            "php": ">=5.5.9"
         },
-        "require-dev": {
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2015-07-23 00:54:12",
+        "time": "2015-08-31 12:59:22",
         "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.1-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Stringy\\": "src/"
-            },
-            "files": [
-                "src/Create.php"
-            ]
+                "Illuminate\\Contracts\\": ""
+            }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -790,24 +802,12 @@
         ],
         "authors": [
             {
-                "name": "Daniel St. Jules",
-                "email": "danielst.jules@gmail.com",
-                "homepage": "http://www.danielstjules.com"
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
             }
         ],
-        "description": "A string manipulation library with multibyte support",
-        "homepage": "https://github.com/danielstjules/Stringy",
-        "keywords": [
-            "UTF",
-            "helpers",
-            "manipulation",
-            "methods",
-            "multibyte",
-            "string",
-            "utf-8",
-            "utility",
-            "utils"
-        ]
+        "description": "The Illuminate Contracts package.",
+        "homepage": "http://laravel.com"
     },
     {
         "name": "illuminate/support",
@@ -2117,17 +2117,17 @@
     },
     {
         "name": "doctrine/dbal",
-        "version": "v2.5.1",
-        "version_normalized": "2.5.1.0",
+        "version": "v2.5.2",
+        "version_normalized": "2.5.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/doctrine/dbal.git",
-            "reference": "628c2256b646ae2417d44e063bce8aec5199d48d"
+            "reference": "01dbcbc5cd0a913d751418e635434a18a2f2a75c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/dbal/zipball/628c2256b646ae2417d44e063bce8aec5199d48d",
-            "reference": "628c2256b646ae2417d44e063bce8aec5199d48d",
+            "url": "https://api.github.com/repos/doctrine/dbal/zipball/01dbcbc5cd0a913d751418e635434a18a2f2a75c",
+            "reference": "01dbcbc5cd0a913d751418e635434a18a2f2a75c",
             "shasum": ""
         },
         "require": {
@@ -2141,7 +2141,7 @@
         "suggest": {
             "symfony/console": "For helpful console commands such as SQL execution and import of files."
         },
-        "time": "2015-01-12 21:52:47",
+        "time": "2015-09-16 16:29:33",
         "bin": [
             "bin/doctrine-dbal"
         ],
@@ -2249,12 +2249,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/flarum/core.git",
-            "reference": "8b06a6c282227909ce433408f5798fef51874703"
+            "reference": "974d301bed446f18bddb0a8f0fb678f3b7a2caaa"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/flarum/core/zipball/8b06a6c282227909ce433408f5798fef51874703",
-            "reference": "8b06a6c282227909ce433408f5798fef51874703",
+            "url": "https://api.github.com/repos/flarum/core/zipball/974d301bed446f18bddb0a8f0fb678f3b7a2caaa",
+            "reference": "974d301bed446f18bddb0a8f0fb678f3b7a2caaa",
             "shasum": ""
         },
         "require": {
@@ -2289,7 +2289,7 @@
             "phpspec/phpspec": "^2.2",
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2015-09-16 08:03:23",
+        "time": "2015-09-16 23:41:48",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

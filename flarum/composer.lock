@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1a53a1a075c57bc86cc87c173c468d18",
+    "hash": "c22d210dc1de75d6415128a3e8c7c386",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -393,16 +393,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d"
+                "reference": "01dbcbc5cd0a913d751418e635434a18a2f2a75c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/628c2256b646ae2417d44e063bce8aec5199d48d",
-                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/01dbcbc5cd0a913d751418e635434a18a2f2a75c",
+                "reference": "01dbcbc5cd0a913d751418e635434a18a2f2a75c",
                 "shasum": ""
             },
             "require": {
@@ -460,7 +460,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2015-01-12 21:52:47"
+            "time": "2015-09-16 16:29:33"
         },
         {
             "name": "doctrine/inflector",
@@ -647,12 +647,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/flarum/core.git",
-                "reference": "8b06a6c282227909ce433408f5798fef51874703"
+                "reference": "974d301bed446f18bddb0a8f0fb678f3b7a2caaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flarum/core/zipball/8b06a6c282227909ce433408f5798fef51874703",
-                "reference": "8b06a6c282227909ce433408f5798fef51874703",
+                "url": "https://api.github.com/repos/flarum/core/zipball/974d301bed446f18bddb0a8f0fb678f3b7a2caaa",
+                "reference": "974d301bed446f18bddb0a8f0fb678f3b7a2caaa",
                 "shasum": ""
             },
             "require": {
@@ -703,7 +703,7 @@
                     "email": "toby@flarum.org"
                 }
             ],
-            "time": "2015-09-16 08:03:23"
+            "time": "2015-09-16 23:41:48"
         },
         {
             "name": "franzl/whoops-middleware",

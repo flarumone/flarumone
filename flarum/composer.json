@@ -12,7 +12,7 @@
         "flarum/core": "dev-master@dev"
     },
     "require-dev": {
-        "franzl/studio": "1.0.x@dev"
+        "franzl/studio": "0.10.x@dev"
     },
     "config": {
         "preferred-install": "dist"

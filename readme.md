@@ -32,6 +32,7 @@ subscriptions | 站内通知功能，如：接受关注的帖子的动态、自�
 suspend | 禁言，禁止用户发布帖子和回复
 tags | 标签
 instructions | 设置一个发帖和回复时的友情提醒
+smtp | 可视化的smtp配置扩展
 
 [下载](https://github.com/flarumone/flarumone/releases) - [文档](http://php.szlt.net/flarum/index.html) - [支持](http://flarumone.com)
 

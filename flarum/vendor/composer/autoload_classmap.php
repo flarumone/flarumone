@@ -600,6 +600,8 @@ return array(
     'Flarum\\Events\\ScopeEmptyDiscussionVisibility' => $vendorDir . '/flarum/core/src/Events/ScopeEmptyDiscussionVisibility.php',
     'Flarum\\Events\\ScopeModelVisibility' => $vendorDir . '/flarum/core/src/Events/ScopeModelVisibility.php',
     'Flarum\\Events\\ScopePostVisibility' => $vendorDir . '/flarum/core/src/Events/ScopePostVisibility.php',
+    'Flarum\\Events\\SerializeConfig' => $vendorDir . '/flarum/core/src/Events/SerializeConfig.php',
+    'Flarum\\Events\\UnserializeConfig' => $vendorDir . '/flarum/core/src/Events/UnserializeConfig.php',
     'Flarum\\Events\\UserAvatarWasChanged' => $vendorDir . '/flarum/core/src/Events/UserAvatarWasChanged.php',
     'Flarum\\Events\\UserBioWasChanged' => $vendorDir . '/flarum/core/src/Events/UserBioWasChanged.php',
     'Flarum\\Events\\UserEmailChangeWasRequested' => $vendorDir . '/flarum/core/src/Events/UserEmailChangeWasRequested.php',

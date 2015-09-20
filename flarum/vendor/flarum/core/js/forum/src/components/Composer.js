@@ -37,6 +37,13 @@ class Composer extends Component {
     this.height = null;
 
     /**
+     * Whether or not the composer currently has focus.
+     *
+     * @type {Boolean}
+     */
+    this.active = false;
+
+    /**
      * Computed the composer's current height, based on the intended height, and
      * the composer's current state. This will be applied to the composer's
      * content's DOM element.
@@ -62,7 +69,8 @@ class Composer extends Component {
   view() {
     const classes = {
       'minimized': this.position === Composer.PositionEnum.MINIMIZED,
-      'fullScreen': this.position === Composer.PositionEnum.FULLSCREEN
+      'fullScreen': this.position === Composer.PositionEnum.FULLSCREEN,
+      'active': this.active
     };
     classes.visible = this.position === Composer.PositionEnum.NORMAL || classes.minimized || classes.fullScreen;
 
@@ -100,11 +108,14 @@ class Composer extends Component {
     // it at previously, or otherwise the composer's default height. After that,
     // we'll hide the composer.
     this.height = localStorage.getItem('composerHeight') || this.$().height();
-    this.$().hide();
+    this.$().hide().css('bottom', -this.height);
 
     // Whenever any of the inputs inside the composer are have focus, we want to
     // add a class to the composer to draw attention to it.
-    this.$().on('focus blur', ':input', e => this.$().toggleClass('active', e.type === 'focusin'));
+    this.$().on('focus blur', ':input', e => {
+      this.active = e.type === 'focusin';
+      m.redraw();
+    });
 
     // When the escape key is pressed on any inputs, close the composer.
     this.$().on('keydown', ':input', 'esc', () => this.close());

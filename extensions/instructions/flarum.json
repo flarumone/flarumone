@@ -1,0 +1,21 @@
+{
+    "name": "instructions",
+    "title": "Instructions",
+    "description": "Show instructions to users as they are composing a post.",
+    "keywords": [],
+    "version": "0.1.0-beta.2",
+    "author": {
+        "name": "Toby Zerner",
+        "email": "toby@flarum.org",
+        "homepage": "http://tobyzerner.com"
+    },
+    "license": "MIT",
+    "require": {
+        "flarum": ">=0.1.0-beta.2"
+    },
+    "icon": {
+        "name": "info",
+        "backgroundColor": "#888",
+        "color": "#fff"
+    }
+}

@@ -2,10 +2,14 @@
 
 **[FlarumOne](http://flarumone.com) 基于 Flarum 轻论坛的中文增强发行版**
 Flarum 是一款优雅简洁论坛软件，让在线交流变得更加轻松愉快
-FlarumOne 主要亮点是尽可能的适应国内使用场景，首先对其进行汉化并使其支持多语言切换，其次优化中文搜索，并改默认google字体的cdn为360提供，提升国内用户的加载速度
-后续将扩展中文分词搜索，手机号码注册账号，国内第三方登陆
+FlarumOne 主要亮点是尽可能的适应国内使用场景，首先对其进行汉化并使其支持多语言切换，其次优化中文搜索，并改默认google字体的cdn为中科大提供  
+与此同时，我们也推出了专为**[FlarumOne深度优化的LNMP一键环境包](http://flarumone.com)**，欢迎体验并反馈
+让FlarumOne更符合国人使用习惯，是我们不懈的追求，也期待您的加入，么么哒
 
 ## 已集成扩展
+
+> **Demo: [http://flarumone.com](http://flarumone.com)**
+
 名称 | 功能简述
 ------------ | -------------
 akismet | 第三方阻止垃圾内容的服务，使用前需向`akismet.com`申请`API Key`
@@ -27,8 +31,7 @@ sticky | 实现帖子顶置
 subscriptions | 站内通知功能，如：接受关注的帖子的动态、自己的帖子被点赞，等
 suspend | 禁言，禁止用户发布帖子和回复
 tags | 标签
-
-> **Demo:**[http://flarumone.com](http://flarumone.com)
+instructions | 设置一个发帖和回复时的友情提醒
 
 [下载](https://github.com/flarumone/flarumone/releases) - [文档](http://php.szlt.net/flarum/index.html) - [支持](http://flarumone.com)
 

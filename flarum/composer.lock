@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "c22d210dc1de75d6415128a3e8c7c386",
+    "content-hash": "b7e92981167b0b0e28cd9cdd407fbc4a",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -647,12 +648,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/flarum/core.git",
-                "reference": "f4a4ed8b4990910dd7d52495c7783f7990007f11"
+                "reference": "efca923d307fe94c3a8586ff18ff1d104712d2d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flarum/core/zipball/f4a4ed8b4990910dd7d52495c7783f7990007f11",
-                "reference": "f4a4ed8b4990910dd7d52495c7783f7990007f11",
+                "url": "https://api.github.com/repos/flarum/core/zipball/efca923d307fe94c3a8586ff18ff1d104712d2d7",
+                "reference": "efca923d307fe94c3a8586ff18ff1d104712d2d7",
                 "shasum": ""
             },
             "require": {
@@ -703,7 +704,7 @@
                     "email": "toby@flarum.org"
                 }
             ],
-            "time": "2015-09-17 03:27:22"
+            "time": "2015-09-18 07:16:46"
         },
         {
             "name": "franzl/whoops-middleware",
@@ -1770,16 +1771,16 @@
         },
         {
             "name": "oyejorge/less.php",
-            "version": "v1.7.0.6",
+            "version": "v1.7.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "29140fadbcae80f920d86bf91104c78f83cc223b"
+                "reference": "f196688753959847a36c3512fe7b921d06aca6c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/29140fadbcae80f920d86bf91104c78f83cc223b",
-                "reference": "29140fadbcae80f920d86bf91104c78f83cc223b",
+                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/f196688753959847a36c3512fe7b921d06aca6c9",
+                "reference": "f196688753959847a36c3512fe7b921d06aca6c9",
                 "shasum": ""
             },
             "require": {
@@ -1825,7 +1826,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2015-09-15 20:13:20"
+            "time": "2015-09-17 22:09:16"
         },
         {
             "name": "psr/http-message",

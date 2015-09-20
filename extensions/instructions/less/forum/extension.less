@@ -1,0 +1,35 @@
+.ComposerBody-header .item-instructions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  margin: 0;
+}
+.Instructions {
+  margin: 0 0 10px 0;
+  .box-shadow(0 2px 6px @shadow-color);
+}
+.Instructions-content {
+  & :first-child {
+    margin-top: 0;
+  }
+  & :last-child {
+    margin-bottom: 0;
+  }
+
+  // Since instructions appear inside of a ul.ComposerBody-header, we need to
+  // reset child ul styles.
+  ul, ol {
+    margin: 0 0 1em;
+  }
+  ul {
+    list-style-type: disc;
+  }
+  ul ul {
+    list-style-type: circle;
+  }
+}
+.Instructions-close {
+  float: right;
+  margin: -10px -10px 0 0;
+}

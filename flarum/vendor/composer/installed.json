@@ -433,21 +433,24 @@
     },
     {
         "name": "league/flysystem",
-        "version": "1.0.12",
-        "version_normalized": "1.0.12.0",
+        "version": "1.0.13",
+        "version_normalized": "1.0.13.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/flysystem.git",
-            "reference": "7323424a9d39c24e597ed3f2144419dfbb52e086"
+            "reference": "76caed01a57527599b55919f0746104f288b3d56"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/7323424a9d39c24e597ed3f2144419dfbb52e086",
-            "reference": "7323424a9d39c24e597ed3f2144419dfbb52e086",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/76caed01a57527599b55919f0746104f288b3d56",
+            "reference": "76caed01a57527599b55919f0746104f288b3d56",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.0"
+        },
+        "conflict": {
+            "league/flysystem-sftp": "<1.0.6"
         },
         "require-dev": {
             "ext-fileinfo": "*",
@@ -470,7 +473,7 @@
             "league/flysystem-webdav": "Allows you to use WebDAV storage",
             "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter"
         },
-        "time": "2015-09-05 12:06:41",
+        "time": "2015-09-20 13:05:34",
         "type": "library",
         "extra": {
             "branch-alias": {

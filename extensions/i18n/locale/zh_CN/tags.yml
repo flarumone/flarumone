@@ -3,7 +3,7 @@ tags:
   discussion_tagged_post:
     one: "{username} {action} 标签"
     other: "{username} {action} 标签"
-  added_tags: "加入标签 {tags"
+  added_tags: "加入标签 {tags}"
   removed_tags: "移除标签 {tags}"
   tag_new_discussion_title: 选择标签
   tag_new_discussion_link: 选择标签

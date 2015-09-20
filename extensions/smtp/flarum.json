@@ -1,0 +1,21 @@
+{
+    "name": "smtp",
+    "title": "Mail SMTP Config",
+    "description": "E-Mail SMTP Config UI.",
+    "keywords": [],
+    "version": "0.1.0-beta.1",
+    "author": {
+        "name": "FlarumOne",
+        "email": "flarumone@gmail.com",
+        "homepage": "http://flarumone.com"
+    },
+    "license": "MIT",
+    "require": {
+        "flarum": ">=0.1.0-beta.2"
+    },
+    "icon": {
+        "name": "mial",
+        "backgroundColor": "#888",
+        "color": "#fff"
+    }
+}

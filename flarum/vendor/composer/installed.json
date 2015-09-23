@@ -433,17 +433,17 @@
     },
     {
         "name": "league/flysystem",
-        "version": "1.0.13",
-        "version_normalized": "1.0.13.0",
+        "version": "1.0.14",
+        "version_normalized": "1.0.14.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/flysystem.git",
-            "reference": "76caed01a57527599b55919f0746104f288b3d56"
+            "reference": "202c7775d959f377e2e302d93e7127c47604438a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/76caed01a57527599b55919f0746104f288b3d56",
-            "reference": "76caed01a57527599b55919f0746104f288b3d56",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/202c7775d959f377e2e302d93e7127c47604438a",
+            "reference": "202c7775d959f377e2e302d93e7127c47604438a",
             "shasum": ""
         },
         "require": {
@@ -473,7 +473,7 @@
             "league/flysystem-webdav": "Allows you to use WebDAV storage",
             "league/flysystem-ziparchive": "Allows you to use ZipArchive adapter"
         },
-        "time": "2015-09-20 13:05:34",
+        "time": "2015-09-22 19:18:28",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2252,12 +2252,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/flarum/core.git",
-            "reference": "efca923d307fe94c3a8586ff18ff1d104712d2d7"
+            "reference": "69a50565bb74191019ebd0e777fffc26f40f43fb"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/flarum/core/zipball/efca923d307fe94c3a8586ff18ff1d104712d2d7",
-            "reference": "efca923d307fe94c3a8586ff18ff1d104712d2d7",
+            "url": "https://api.github.com/repos/flarum/core/zipball/69a50565bb74191019ebd0e777fffc26f40f43fb",
+            "reference": "69a50565bb74191019ebd0e777fffc26f40f43fb",
             "shasum": ""
         },
         "require": {
@@ -2292,7 +2292,7 @@
             "phpspec/phpspec": "^2.2",
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2015-09-18 07:16:46",
+        "time": "2015-09-23 01:22:26",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

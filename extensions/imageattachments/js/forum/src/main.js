@@ -45,7 +45,7 @@ function addDragHook () {
     });
     $(element).on('paste', function (e) {
       var items = e.originalEvent.clipboardData.items;
-      if (items.length < 1) {
+      if (items && items.length < 1) {
         return;
       }
       uploadImage(items, editor);

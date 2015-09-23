@@ -10,7 +10,7 @@ export default class LoadingModal extends Modal {
   }
 
   title() {
-    return 'Please Wait...';
+    return '请稍等...';
   }
 
   content() {

@@ -20,9 +20,9 @@ export default class AppearancePage extends Component {
         <div className="container">
           <form onsubmit={this.onsubmit.bind(this)}>
             <fieldset className="AppearancePage-colors">
-              <legend>Colors</legend>
+              <legend>色彩</legend>
               <div className="helpText">
-                Choose two colors to theme your forum with. The first will be used as a highlight color, while the second will be used to style background elements.
+                选择两种颜色作为站点主题。第一种将用作突出显示颜色，第二种将用于背景元素的样式
               </div>
 
               <div className="AppearancePage-colors-input">
@@ -32,20 +32,20 @@ export default class AppearancePage extends Component {
 
               {Switch.component({
                 state: this.darkMode(),
-                children: 'Dark Mode',
+                children: '夜间模式',
                 onchange: this.darkMode
               })}
 
               {Switch.component({
                 state: this.coloredHeader(),
-                children: 'Colored Header',
+                children: '彩色头部',
                 onchange: this.coloredHeader
               })}
 
               {Button.component({
                 className: 'Button Button--primary',
                 type: 'submit',
-                children: 'Save Changes',
+                children: '保存更改',
                 loading: this.loading
               })}
             </fieldset>
@@ -58,7 +58,7 @@ export default class AppearancePage extends Component {
             </div>
             {Button.component({
               className: 'Button',
-              children: 'Edit Custom CSS',
+              children: '编辑自定义CSS',
               onclick: () => app.modal.show(new EditCustomCssModal())
             })}
           </fieldset>
@@ -73,7 +73,7 @@ export default class AppearancePage extends Component {
     const hex = /^#[0-9a-f]{3}([0-9a-f]{3})?$/i;
 
     if (!hex.test(this.primaryColor()) || !hex.test(this.secondaryColor())) {
-      alert('Please enter a hexadecimal color code.');
+      alert('请输入一个十六进制颜色代码');
       return;
     }
 

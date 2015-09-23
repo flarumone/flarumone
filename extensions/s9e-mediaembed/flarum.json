@@ -3,7 +3,7 @@
 	"title": "s9e/mediaembed",
 	"description": "Embed third-party content in your Flarum.",
 	"keywords": ["embed","facebook","media","twitter","youtube"],
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"author": {
 		"name": "JoshyPHP"
 	},

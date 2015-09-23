@@ -16,7 +16,7 @@ akismet | 第三方阻止垃圾内容的服务，使用前需向`akismet.com`申
 bbcode | 让帖子和回复支持`BBCode`
 emoji | 让帖子和回复支持`emoji`表情代码
 i18n | i18n（其来源是英文单词 internationalization的首末字符i和n，18为中间的字符数）是“国际化”的简称。详细介绍可以参见：`https://github.com/flarumone/i18n`
-imageattachments | 这是个截图上传扩展，可以直接将截图粘贴到发帖和回复的输入框内，程序将会把截图自动上传到服务器
+imageattachments | 这是个截图上传扩展，可以直接将截图粘贴到发帖和回复的输入框内，程序将会把截图自动上传到服务器，目前可将图片上传到七牛
 likes | 实现点赞
 likesearch | 支持中文搜索
 lock | 锁帖，禁止任何人回复
@@ -33,6 +33,7 @@ suspend | 禁言，禁止用户发布帖子和回复
 tags | 标签
 instructions | 设置一个发帖和回复时的友情提醒
 smtp | 可视化的smtp配置扩展
+approval | 审帖功能，审核新帖子和回复
 
 [下载](https://github.com/flarumone/flarumone/releases) - [文档](http://php.szlt.net/flarum/index.html) - [支持](http://flarumone.com)
 

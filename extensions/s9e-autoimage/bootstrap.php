@@ -35,8 +35,6 @@ class Listener
 		}
 		catch (Exception $e)
 		{
-			// Do nothing
-			file_put_contents('/tmp/out',$e->getMessage());
 		}
 	}
 }

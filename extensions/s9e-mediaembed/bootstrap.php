@@ -29,8 +29,10 @@ class Listener
 
 	public function addMediaSites(FormatterConfigurator $event)
 	{
-		$event->configurator->templateChecker->remove('DisallowUnsafeDynamicCSS');
-		$event->configurator->MediaEmbed->enableResponsiveEmbeds();
+		if (is_callable([$event->configurator->MediaEmbed, 'enableResponsiveEmbeds']))
+		{
+			$event->configurator->MediaEmbed->enableResponsiveEmbeds();
+		}
 		(new MediaPack)->configure($event->configurator);
 	}
 }

@@ -28,7 +28,7 @@ export default class EditUserModal extends Modal {
   }
 
   title() {
-    return 'Edit User';
+    return '编辑用户';
   }
 
   content() {
@@ -36,14 +36,14 @@ export default class EditUserModal extends Modal {
       <div className="Modal-body">
         <div className="Form">
           <div className="Form-group">
-            <label>Username</label>
+            <label>用户名</label>
             <input className="FormControl" placeholder={app.trans('core.username')}
               value={this.username()}
               onchange={m.withAttr('value', this.username)} />
           </div>
 
           <div className="Form-group">
-            <label>Email</label>
+            <label>邮箱</label>
             <div>
               <input className="FormControl" placeholder={app.trans('core.email')}
                 value={this.email()}
@@ -52,7 +52,7 @@ export default class EditUserModal extends Modal {
           </div>
 
           <div className="Form-group">
-            <label>Password</label>
+            <label>密码</label>
             <div>
               <label className="checkbox">
                 <input type="checkbox" checked={this.setPassword()} onchange={e => {
@@ -61,7 +61,7 @@ export default class EditUserModal extends Modal {
                   if (e.target.checked) this.$('[name=password]').select();
                   m.redraw.strategy('none');
                 }}/>
-                Set new password
+                设置新密码
               </label>
               {this.setPassword() ? (
                 <input className="FormControl" type="password" name="password" placeholder={app.trans('core.password')}
@@ -72,7 +72,7 @@ export default class EditUserModal extends Modal {
           </div>
 
           <div className="Form-group EditUserModal-groups">
-            <label>Groups</label>
+            <label>用户组</label>
             <div>
               {Object.keys(this.groups)
                 .map(id => app.store.getById('groups', id))

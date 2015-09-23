@@ -27,9 +27,9 @@ export default class PermissionDropdown extends Dropdown {
     const adminGroup = app.store.getById('groups', Group.ADMINISTRATOR_ID);
 
     if (everyone) {
-      this.props.label = 'Everyone';
+      this.props.label = '游客';
     } else if (members) {
-      this.props.label = 'Members';
+      this.props.label = '注册用户';
     } else {
       this.props.label = [
         badgeForId(Group.ADMINISTRATOR_ID),
@@ -40,7 +40,7 @@ export default class PermissionDropdown extends Dropdown {
     if (this.props.allowGuest) {
       this.props.children.push(
         Button.component({
-          children: 'Everyone',
+          children: '游客',
           icon: everyone ? 'check' : true,
           onclick: () => this.save([Group.GUEST_ID])
         })
@@ -49,7 +49,7 @@ export default class PermissionDropdown extends Dropdown {
 
     this.props.children.push(
       Button.component({
-        children: 'Members',
+        children: '注册用户',
         icon: members ? 'check' : true,
         onclick: () => this.save([Group.MEMBER_ID])
       }),
@@ -61,7 +61,7 @@ export default class PermissionDropdown extends Dropdown {
         icon: !everyone && !members ? 'check' : true,
         disabled: !everyone && !members,
         onclick: e => {
-          e.stopPropagation();
+          if (e.shiftKey) e.stopPropagation();
           this.save([]);
         }
       })
@@ -75,7 +75,7 @@ export default class PermissionDropdown extends Dropdown {
           children: [GroupBadge.component({group, label: null}), ' ', group.namePlural()],
           icon: groupIds.indexOf(group.id()) !== -1 ? 'check' : true,
           onclick: (e) => {
-            e.stopPropagation();
+            if (e.shiftKey) e.stopPropagation();
             this.toggle(group.id());
           }
         }))

@@ -39,7 +39,7 @@ export default class EditGroupModal extends Modal {
       <div className="Modal-body">
         <div className="Form">
           <div className="Form-group">
-            <label>Name</label>
+            <label>组名</label>
             <div className="EditGroupModal-name-input">
               <input className="FormControl" placeholder="Singular (e.g. Mod)" value={this.nameSingular()} oninput={m.withAttr('value', this.nameSingular)}/>
               <input className="FormControl" placeholder="Plural (e.g. Mods)" value={this.namePlural()} oninput={m.withAttr('value', this.namePlural)}/>
@@ -47,14 +47,14 @@ export default class EditGroupModal extends Modal {
           </div>
 
           <div className="Form-group">
-            <label>Color</label>
+            <label>颜色</label>
             <input className="FormControl" placeholder="#aaaaaa" value={this.color()} oninput={m.withAttr('value', this.color)}/>
           </div>
 
           <div className="Form-group">
-            <label>Icon</label>
+            <label>图标</label>
             <div className="helpText">
-              Enter the name of any <a href="http://fortawesome.github.io/Font-Awesome/icons/" tabindex="-1">FontAwesome</a> icon class, <em>without</em> the <code>fa-</code> prefix.
+              输入任意一个 <a href="http://fortawesome.github.io/Font-Awesome/icons/" tabindex="-1">FontAwesome</a> 图标名称，<em>无需添加</em><code>fa-</code> 前缀
             </div>
             <input className="FormControl" placeholder="bolt" value={this.icon()} oninput={m.withAttr('value', this.icon)}/>
           </div>
@@ -64,11 +64,11 @@ export default class EditGroupModal extends Modal {
               type: 'submit',
               className: 'Button Button--primary EditGroupModal-save',
               loading: this.loading,
-              children: 'Save Changes'
+              children: '保存更改'
             })}
             {this.group.exists && this.group.id() !== Group.ADMINISTRATOR_ID ? (
               <button type="button" className="Button EditGroupModal-delete" onclick={this.delete.bind(this)}>
-                Delete Group
+                删除用户组
               </button>
             ) : ''}
           </div>
@@ -97,7 +97,7 @@ export default class EditGroupModal extends Modal {
   }
 
   delete() {
-    if (confirm('Are you sure you want to delete this group? The group members will NOT be deleted.')) {
+    if (confirm('你确定删除这个用户组吗？删除后该用户组中的用户不会被删除')) {
       this.group.delete().then(() => m.redraw());
       this.hide();
     }

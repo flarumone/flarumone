@@ -25,7 +25,7 @@ export default class PermissionsPage extends Component {
               ))}
             <button className="Button Group Group--add" onclick={() => app.modal.show(new EditGroupModal())}>
               {icon('plus', {className: 'Group-icon'})}
-              <span className="Group-name">New Group</span>
+              <span className="Group-name">新用户组</span>
             </button>
           </div>
         </div>

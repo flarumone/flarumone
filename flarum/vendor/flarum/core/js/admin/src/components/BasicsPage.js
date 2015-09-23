@@ -36,17 +36,17 @@ export default class BasicsPage extends Component {
         <div className="container">
           <form onsubmit={this.onsubmit.bind(this)}>
             {FieldSet.component({
-              label: 'Forum Title',
+              label: '站点名称',
               children: [
                 <input className="FormControl" value={this.values.forum_title()} oninput={m.withAttr('value', this.values.forum_title)}/>
               ]
             })}
 
             {FieldSet.component({
-              label: 'Forum Description',
+              label: '站点描述',
               children: [
                 <div className="helpText">
-                  Enter a short sentence or two that describes your community. This will appear in the meta tag and show up in search engines.
+                  通过几个简短的词语或句子描述您的站点，这将出现在 Meta 标记，并且在搜索引擎中出现
                 </div>,
                 <textarea className="FormControl" value={this.values.forum_description()} oninput={m.withAttr('value', this.values.forum_description)}/>
               ]
@@ -54,7 +54,7 @@ export default class BasicsPage extends Component {
 
             {Object.keys(this.localeOptions).length > 1
               ? FieldSet.component({
-                label: 'Default Language',
+                label: '默认语言',
                 children: [
                   Select.component({
                     options: this.localeOptions,
@@ -65,11 +65,11 @@ export default class BasicsPage extends Component {
               : ''}
 
             {FieldSet.component({
-              label: 'Home Page',
+              label: '站点首页',
               className: 'BasicsPage-homePage',
               children: [
                 <div className="helpText">
-                  Choose the page which users will first see when they visit your forum. If entering a custom value, use the path relative to the forum root.
+                  选择一个页面作为站点的首页。如果输入一个自定义的值，请使用基于站点根目录的相对路径
                 </div>,
                 this.homePageItems().toArray().map(({path, label}) =>
                   <label className="checkbox">
@@ -81,11 +81,11 @@ export default class BasicsPage extends Component {
             })}
 
             {FieldSet.component({
-              label: 'Welcome Banner',
+              label: '站点横幅',
               className: 'BasicsPage-welcomeBanner',
               children: [
                 <div className="helpText">
-                  Configure the text that displays in the banner on the All Discussions page. Use this to welcome guests to your forum.
+                  配置一个横幅文本，它将显示在站点中的“所有话题”页面上
                 </div>,
                 <div className="BasicsPage-welcomeBanner-input">
                   <input className="FormControl" value={this.values.welcome_title()} oninput={m.withAttr('value', this.values.welcome_title)}/>
@@ -97,7 +97,7 @@ export default class BasicsPage extends Component {
             {Button.component({
               type: 'submit',
               className: 'Button Button--primary',
-              children: 'Save Changes',
+              children: '保存更改',
               loading: this.loading,
               disabled: !this.changed()
             })}
@@ -123,7 +123,7 @@ export default class BasicsPage extends Component {
 
     items.add('allDiscussions', {
       path: '/all',
-      label: 'All Discussions'
+      label: '所有话题'
     });
 
     return items;
@@ -143,7 +143,7 @@ export default class BasicsPage extends Component {
 
     saveConfig(config)
       .then(() => {
-        app.alerts.show(this.successAlert = new Alert({type: 'success', children: 'Your changes were saved.'}));
+        app.alerts.show(this.successAlert = new Alert({type: 'success', children: '你的更改已保存'}));
       })
       .finally(() => {
         this.loading = false;

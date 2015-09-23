@@ -3,5 +3,8 @@
         "psr-4": {
             "S12g\\ImageAttachments\\": "src/"
         }
+    },
+    "require": {
+        "qiniu/php-sdk": "^7.0"
     }
 }

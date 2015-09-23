@@ -3,6 +3,7 @@ import PermissionDropdown from 'flarum/components/PermissionDropdown';
 import ConfigDropdown from 'flarum/components/ConfigDropdown';
 import Button from 'flarum/components/Button';
 import ItemList from 'flarum/utils/ItemList';
+import icon from 'flarum/helpers/icon';
 
 export default class PermissionGrid extends Component {
   constructor(...args) {
@@ -45,7 +46,7 @@ export default class PermissionGrid extends Component {
             </tr>
             {section.children.map(child => (
               <tr className="PermissionGrid-child">
-                <th>{child.label}</th>
+                <th>{child.icon ? icon(child.icon) : ''}{child.label}</th>
                 {permissionCells(child)}
                 <td/>
               </tr>
@@ -60,24 +61,24 @@ export default class PermissionGrid extends Component {
     const items = new ItemList();
 
     items.add('view', {
-      label: 'View the forum',
+      label: '浏览',
       children: this.viewItems().toArray()
-    });
+    }, 100);
 
     items.add('start', {
-      label: 'Start discussions',
+      label: '创建',
       children: this.startItems().toArray()
-    });
+    }, 90);
 
     items.add('reply', {
-      label: 'Reply to discussions',
+      label: '回复',
       children: this.replyItems().toArray()
-    });
+    }, 80);
 
     items.add('moderate', {
-      label: 'Moderate',
+      label: '管理',
       children: this.moderateItems().toArray()
-    });
+    }, 70);
 
     return items;
   }
@@ -86,21 +87,23 @@ export default class PermissionGrid extends Component {
     const items = new ItemList();
 
     items.add('view', {
-      label: 'View discussions',
+      icon: 'eye',
+      label: '浏览话题',
       permission: 'forum.view',
       allowGuest: true
-    });
+    }, 100);
 
     items.add('signUp', {
-      label: 'Sign up',
+      icon: 'user-plus',
+      label: '注册账号',
       setting: () => ConfigDropdown.component({
         key: 'allow_sign_up',
         options: [
-          {value: '1', label: 'Open'},
-          {value: '0', label: 'Closed'}
+          {value: '1', label: '开启'},
+          {value: '0', label: '关闭'}
         ]
       })
-    });
+    }, 90);
 
     return items;
   }
@@ -109,12 +112,14 @@ export default class PermissionGrid extends Component {
     const items = new ItemList();
 
     items.add('start', {
-      label: 'Start discussions',
+      icon: 'edit',
+      label: '创建话题',
       permission: 'forum.startDiscussion'
-    });
+    }, 100);
 
     items.add('allowRenaming', {
-      label: 'Allow renaming',
+      icon: 'i-cursor',
+      label: '修改标题',
       setting: () => {
         const minutes = parseInt(app.config.allow_renaming, 10);
 
@@ -122,13 +127,13 @@ export default class PermissionGrid extends Component {
           defaultLabel: minutes ? `For ${minutes} minutes` : 'Indefinitely',
           key: 'allow_renaming',
           options: [
-            {value: '-1', label: 'Indefinitely'},
-            {value: '10', label: 'For 10 minutes'},
-            {value: 'reply', label: 'Until next reply'}
+            {value: '-1', label: '无限期'},
+            {value: '10', label: '发布 10 分钟内'},
+            {value: 'reply', label: '直到被回复'}
           ]
         });
       }
-    });
+    }, 90);
 
     return items;
   }
@@ -137,12 +142,14 @@ export default class PermissionGrid extends Component {
     const items = new ItemList();
 
     items.add('reply', {
-      label: 'Reply to discussions',
+      icon: 'reply',
+      label: '回复话题',
       permission: 'discussion.reply'
-    });
+    }, 100);
 
     items.add('allowPostEditing', {
-      label: 'Allow post editing',
+      icon: 'pencil',
+      label: '修改回复',
       setting: () => {
         const minutes = parseInt(app.config.allow_post_editing, 10);
 
@@ -150,13 +157,13 @@ export default class PermissionGrid extends Component {
           defaultLabel: minutes ? `For ${minutes} minutes` : 'Indefinitely',
           key: 'allow_post_editing',
           options: [
-            {value: '-1', label: 'Indefinitely'},
-            {value: '10', label: 'For 10 minutes'},
-            {value: 'reply', label: 'Until next reply'}
+            {value: '-1', label: '无限期'},
+            {value: '10', label: '发表 10 分钟内'},
+            {value: 'reply', label: '直到下一条回复'}
           ]
         });
       }
-    });
+    }, 90);
 
     return items;
   }
@@ -164,25 +171,35 @@ export default class PermissionGrid extends Component {
   moderateItems() {
     const items = new ItemList();
 
-    items.add('editPosts', {
-      label: 'Edit posts',
-      permission: 'discussion.editPosts'
-    });
-
-    items.add('deletePosts', {
-      label: 'Delete posts',
-      permission: 'discussion.deletePosts'
-    });
-
     items.add('renameDiscussions', {
-      label: 'Rename discussions',
+      icon: 'i-cursor',
+      label: '重命名话题',
       permission: 'discussion.rename'
-    });
+    }, 100);
+
+    items.add('hideDiscussions', {
+      icon: 'trash-o',
+      label: '屏蔽话题',
+      permission: 'discussion.hide'
+    }, 90);
 
     items.add('deleteDiscussions', {
-      label: 'Delete discussions',
+      icon: 'times',
+      label: '删除话题',
       permission: 'discussion.delete'
-    });
+    }, 80);
+
+    items.add('editPosts', {
+      icon: 'pencil',
+      label: '修改和删除回复',
+      permission: 'discussion.editPosts'
+    }, 70);
+
+    items.add('deletePosts', {
+      icon: 'times',
+      label: '删除回复',
+      permission: 'discussion.deletePosts'
+    }, 60);
 
     return items;
   }
@@ -191,17 +208,20 @@ export default class PermissionGrid extends Component {
     const items = new ItemList();
 
     items.add('global', {
-      label: 'Global',
+      label: '全局',
       render: item => {
         if (item.setting) {
           return item.setting();
         } else if (item.permission) {
-          return PermissionDropdown.component(Object.assign({}, item));
+          return PermissionDropdown.component({
+            permission: item.permission,
+            allowGuest: item.allowGuest
+          });
         }
 
         return '';
       }
-    });
+    }, 100);
 
     return items;
   }

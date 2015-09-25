@@ -11,7 +11,6 @@
 
 use Flarum\Api\Middleware\JsonApiErrors;
 use Flarum\Core;
-use Franzl\Middleware\Whoops\Middleware as WhoopsMiddleware;
 use Zend\Diactoros\Server;
 use Zend\Stratigility\MiddlewarePipe;
 
@@ -22,6 +21,7 @@ $app->register('Flarum\Api\ApiServiceProvider');
 $api = new MiddlewarePipe();
 $api->pipe($app->make('Flarum\Api\Middleware\ReadJsonParameters'));
 $api->pipe($app->make('Flarum\Api\Middleware\LoginWithHeader'));
+$api->pipe($app->make('Flarum\Api\Middleware\FakeHttpMethods'));
 
 $apiPath = parse_url(Core::url('api'), PHP_URL_PATH);
 $router = $app->make('Flarum\Http\RouterMiddleware', ['routes' => $app->make('flarum.api.routes')]);

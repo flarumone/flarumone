@@ -61,22 +61,22 @@ export default class PermissionGrid extends Component {
     const items = new ItemList();
 
     items.add('view', {
-      label: '浏览',
+      label: 'Read',
       children: this.viewItems().toArray()
     }, 100);
 
     items.add('start', {
-      label: '创建',
+      label: 'Create',
       children: this.startItems().toArray()
     }, 90);
 
     items.add('reply', {
-      label: '回复',
+      label: 'Participate',
       children: this.replyItems().toArray()
     }, 80);
 
     items.add('moderate', {
-      label: '管理',
+      label: 'Moderate',
       children: this.moderateItems().toArray()
     }, 70);
 
@@ -88,19 +88,19 @@ export default class PermissionGrid extends Component {
 
     items.add('view', {
       icon: 'eye',
-      label: '浏览话题',
+      label: 'View discussions',
       permission: 'forum.view',
       allowGuest: true
     }, 100);
 
     items.add('signUp', {
       icon: 'user-plus',
-      label: '注册账号',
+      label: 'Sign up',
       setting: () => ConfigDropdown.component({
         key: 'allow_sign_up',
         options: [
-          {value: '1', label: '开启'},
-          {value: '0', label: '关闭'}
+          {value: '1', label: 'Open'},
+          {value: '0', label: 'Closed'}
         ]
       })
     }, 90);
@@ -113,13 +113,13 @@ export default class PermissionGrid extends Component {
 
     items.add('start', {
       icon: 'edit',
-      label: '创建话题',
+      label: 'Start discussions',
       permission: 'forum.startDiscussion'
     }, 100);
 
     items.add('allowRenaming', {
       icon: 'i-cursor',
-      label: '修改标题',
+      label: 'Allow renaming',
       setting: () => {
         const minutes = parseInt(app.config.allow_renaming, 10);
 
@@ -127,9 +127,9 @@ export default class PermissionGrid extends Component {
           defaultLabel: minutes ? `For ${minutes} minutes` : 'Indefinitely',
           key: 'allow_renaming',
           options: [
-            {value: '-1', label: '无限期'},
-            {value: '10', label: '发布 10 分钟内'},
-            {value: 'reply', label: '直到被回复'}
+            {value: '-1', label: 'Indefinitely'},
+            {value: '10', label: 'For 10 minutes'},
+            {value: 'reply', label: 'Until next reply'}
           ]
         });
       }
@@ -143,13 +143,13 @@ export default class PermissionGrid extends Component {
 
     items.add('reply', {
       icon: 'reply',
-      label: '回复话题',
+      label: 'Reply to discussions',
       permission: 'discussion.reply'
     }, 100);
 
     items.add('allowPostEditing', {
       icon: 'pencil',
-      label: '修改回复',
+      label: 'Allow post editing',
       setting: () => {
         const minutes = parseInt(app.config.allow_post_editing, 10);
 
@@ -157,9 +157,9 @@ export default class PermissionGrid extends Component {
           defaultLabel: minutes ? `For ${minutes} minutes` : 'Indefinitely',
           key: 'allow_post_editing',
           options: [
-            {value: '-1', label: '无限期'},
-            {value: '10', label: '发表 10 分钟内'},
-            {value: 'reply', label: '直到下一条回复'}
+            {value: '-1', label: 'Indefinitely'},
+            {value: '10', label: 'For 10 minutes'},
+            {value: 'reply', label: 'Until next reply'}
           ]
         });
       }
@@ -173,31 +173,31 @@ export default class PermissionGrid extends Component {
 
     items.add('renameDiscussions', {
       icon: 'i-cursor',
-      label: '重命名话题',
+      label: 'Rename discussions',
       permission: 'discussion.rename'
     }, 100);
 
     items.add('hideDiscussions', {
       icon: 'trash-o',
-      label: '屏蔽话题',
+      label: 'Delete discussions',
       permission: 'discussion.hide'
     }, 90);
 
     items.add('deleteDiscussions', {
       icon: 'times',
-      label: '删除话题',
+      label: 'Delete discussions forever',
       permission: 'discussion.delete'
     }, 80);
 
     items.add('editPosts', {
       icon: 'pencil',
-      label: '修改和删除回复',
+      label: 'Edit and delete posts',
       permission: 'discussion.editPosts'
     }, 70);
 
     items.add('deletePosts', {
       icon: 'times',
-      label: '删除回复',
+      label: 'Delete posts forever',
       permission: 'discussion.deletePosts'
     }, 60);
 
@@ -208,7 +208,7 @@ export default class PermissionGrid extends Component {
     const items = new ItemList();
 
     items.add('global', {
-      label: '全局',
+      label: 'Global',
       render: item => {
         if (item.setting) {
           return item.setting();

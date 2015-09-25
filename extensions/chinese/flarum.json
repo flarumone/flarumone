@@ -1,0 +1,26 @@
+{
+    "name": "chinese",
+    "title": "中文简体",
+    "locale": "zh",
+    "description": "中文简体语言插件",
+    "keywords": ["language"],
+    "version": "0.1.0-beta.3",
+    "author": {
+        "name": "FlarumOne",
+        "email": "flarumone@gmail.com",
+        "homepage": "https://flarumone.com"
+    },
+    "license": "MIT",
+    "require": {
+        "flarum": ">=0.1.0-beta.3"
+    },
+    "support": {
+        "source": "https://github.com/flarumone/chinese",
+        "issues": "https://github.com/flarumone/chinese/issues"
+    },
+    "icon": {
+        "name": "globe",
+        "backgroundColor": "#eee",
+        "color": "#000"
+    }
+}

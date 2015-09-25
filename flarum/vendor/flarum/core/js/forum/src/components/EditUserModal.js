@@ -2,6 +2,7 @@ import Modal from 'flarum/components/Modal';
 import Button from 'flarum/components/Button';
 import GroupBadge from 'flarum/components/GroupBadge';
 import Group from 'flarum/models/Group';
+import extractText from 'flarum/utils/extractText';
 
 /**
  * The `EditUserModal` component displays a modal dialog with a login form.
@@ -28,7 +29,7 @@ export default class EditUserModal extends Modal {
   }
 
   title() {
-    return '编辑用户';
+    return 'Edit User';
   }
 
   content() {
@@ -36,23 +37,23 @@ export default class EditUserModal extends Modal {
       <div className="Modal-body">
         <div className="Form">
           <div className="Form-group">
-            <label>用户名</label>
-            <input className="FormControl" placeholder={app.trans('core.username')}
+            <label>Username</label>
+            <input className="FormControl" placeholder={extractText(app.trans('core.edit_user_username_label'))}
               value={this.username()}
               onchange={m.withAttr('value', this.username)} />
           </div>
 
           <div className="Form-group">
-            <label>邮箱</label>
+            <label>Email</label>
             <div>
-              <input className="FormControl" placeholder={app.trans('core.email')}
+              <input className="FormControl" placeholder={extractText(app.trans('core.edit_user_email_label'))}
                 value={this.email()}
                 onchange={m.withAttr('value', this.email)} />
             </div>
           </div>
 
           <div className="Form-group">
-            <label>密码</label>
+            <label>Password</label>
             <div>
               <label className="checkbox">
                 <input type="checkbox" checked={this.setPassword()} onchange={e => {
@@ -61,10 +62,10 @@ export default class EditUserModal extends Modal {
                   if (e.target.checked) this.$('[name=password]').select();
                   m.redraw.strategy('none');
                 }}/>
-                设置新密码
+                Set new password
               </label>
               {this.setPassword() ? (
-                <input className="FormControl" type="password" name="password" placeholder={app.trans('core.password')}
+                <input className="FormControl" type="password" name="password" placeholder={extractText(app.trans('core.edit_user_password_label'))}
                   value={this.password()}
                   onchange={m.withAttr('value', this.password)} />
               ) : ''}
@@ -72,7 +73,7 @@ export default class EditUserModal extends Modal {
           </div>
 
           <div className="Form-group EditUserModal-groups">
-            <label>用户组</label>
+            <label>Groups</label>
             <div>
               {Object.keys(this.groups)
                 .map(id => app.store.getById('groups', id))
@@ -93,7 +94,7 @@ export default class EditUserModal extends Modal {
               className: 'Button Button--primary',
               type: 'submit',
               loading: this.loading,
-              children: app.trans('core.save_changes')
+              children: app.trans('core.edit_user_submit_button')
             })}
           </div>
         </div>

@@ -5,6 +5,7 @@
         }
     },
     "require": {
-        "qiniu/php-sdk": "^7.0"
+        "qiniu/php-sdk": "^7.0",
+        "guzzlehttp/guzzle": "~6.0"
     }
 }

@@ -1,0 +1,8 @@
+flags:
+  reason_off_topic: 关闭帖子的原因
+  reason_spam: 垃圾信息
+  reason_inappropriate: 不合时宜
+  reason_other: 其它
+  flagged_by: "{username} 标记"
+  flagged_by_with_reason: "{username} 标记为 {reason}"
+  no_flags: 无待审

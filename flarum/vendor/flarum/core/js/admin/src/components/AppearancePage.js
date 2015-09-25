@@ -20,9 +20,9 @@ export default class AppearancePage extends Component {
         <div className="container">
           <form onsubmit={this.onsubmit.bind(this)}>
             <fieldset className="AppearancePage-colors">
-              <legend>色彩</legend>
+              <legend>Colors</legend>
               <div className="helpText">
-                选择两种颜色作为站点主题。第一种将用作突出显示颜色，第二种将用于背景元素的样式
+                Choose two colors to theme your forum with. The first will be used as a highlight color, while the second will be used to style background elements.
               </div>
 
               <div className="AppearancePage-colors-input">
@@ -32,20 +32,20 @@ export default class AppearancePage extends Component {
 
               {Switch.component({
                 state: this.darkMode(),
-                children: '夜间模式',
+                children: 'Dark Mode',
                 onchange: this.darkMode
               })}
 
               {Switch.component({
                 state: this.coloredHeader(),
-                children: '彩色头部',
+                children: 'Colored Header',
                 onchange: this.coloredHeader
               })}
 
               {Button.component({
                 className: 'Button Button--primary',
                 type: 'submit',
-                children: '保存更改',
+                children: 'Save Changes',
                 loading: this.loading
               })}
             </fieldset>
@@ -58,7 +58,7 @@ export default class AppearancePage extends Component {
             </div>
             {Button.component({
               className: 'Button',
-              children: '编辑自定义CSS',
+              children: 'Edit Custom CSS',
               onclick: () => app.modal.show(new EditCustomCssModal())
             })}
           </fieldset>
@@ -73,7 +73,7 @@ export default class AppearancePage extends Component {
     const hex = /^#[0-9a-f]{3}([0-9a-f]{3})?$/i;
 
     if (!hex.test(this.primaryColor()) || !hex.test(this.secondaryColor())) {
-      alert('请输入一个十六进制颜色代码');
+      alert('Please enter a hexadecimal color code.');
       return;
     }
 

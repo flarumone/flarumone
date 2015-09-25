@@ -18,9 +18,10 @@ class ImageAttachmentsModal extends Modal {
 
     this.driver = m.prop(app.config['imageattachments.driver'] || 'local');
     this.loading = m.prop(true);
-    this.driverList = m.prop([]);
     this.selectDriver = m.prop('');
     this.driverConfig = m.prop('');
+    this.loadingText = m.prop('Loading Drivers');
+    this.dcItems = {};
     if (!drivers) {
       app.request({
         url: app.forum.attribute('apiUrl') + '/s12g/image_attachments'
@@ -32,7 +33,6 @@ class ImageAttachmentsModal extends Modal {
     } else {
       loadDrivers.call(this);
     }
-    this.loadingText = m.prop('Loading Drivers');
     function loadDrivers() {
       this.loading(false);
       this.loadingText = m.prop('Save Changes');
@@ -42,6 +42,13 @@ class ImageAttachmentsModal extends Modal {
         var driverConfig = drivers[driverName];
         var driverTitle = driverConfig.title;
         options[driverName] = driverTitle;
+        // build dc items
+        this.dcItems[driverName] = {};
+        var configKey = 'imageattachments.' + driverName + '.config';
+        var currentConfig = (JSON.parse(app.config[configKey] || '{}') || {});
+        for (var configName in driverConfig.config) {
+          this.dcItems[driverName][configName] = m.prop(currentConfig[configName] || '');
+        }
       }
       this.selectDriver(Select.component({
         options: options,
@@ -63,6 +70,7 @@ class ImageAttachmentsModal extends Modal {
   
   onDriverChange(currentDriver) {
     this.driver(currentDriver);
+    window.aaa = this;
     // read driver config items
     var driverConfig = drivers[currentDriver] || {};
     var configItems = driverConfig.config;
@@ -71,12 +79,15 @@ class ImageAttachmentsModal extends Modal {
       for (var key in configItems) {
         (function(key) {
           var cfg = configItems[key];
-          var configKey = 'imageattachments.' + currentDriver + '.config';
-          var currentValue = (JSON.parse(app.config[configKey] || '{}') || {})[key] || '';
           ui.push(
             <div className="Form-group">
               <label>{cfg.title}</label>
-              <input type="text" value={currentValue} className="FormControl" name={key} />
+              <input type="text" value={this.dcItems[currentDriver][key]()}
+                className="FormControl" name={key}
+                oninput={(function(e){
+                  m.withAttr('value', this.dcItems[currentDriver][key]).call(e.target, e);
+                  this.onDriverChange(currentDriver); // trigger m.redraw for config list
+                }).bind(this)} />
               <p>{cfg.hint}</p>
             </div>
           );
@@ -122,18 +133,18 @@ class ImageAttachmentsModal extends Modal {
     };
     var configItems = drivers[currentDriver].config;
     if (configItems) {
-      var configKeys = Object.keys(configItems);
-      var configObj = configKeys.reduce(function(prev, key) {
-        prev[key] = $target.find('[name="' + key + '"]').val();
-        return prev;
-      }, {});
+      var configObj = {};
+      for (var key in this.dcItems[currentDriver]) {
+        var value = this.dcItems[currentDriver][key];
+        configObj[key] = value();
+      }
       configToSave['imageattachments.' + currentDriver + '.config'] = JSON.stringify(configObj);
     }
     this.loading(true);
     drivers = '';
     
     saveConfig(configToSave).then(
-      () => this.hide(),
+      () =>  this.hide(),
       () => {
         this.loading(false);
         m.redraw();

@@ -48,14 +48,14 @@ export default class DiscussionList extends Component {
       loading = LoadingIndicator.component();
     } else if (this.moreResults) {
       loading = Button.component({
-        children: app.trans('core.load_more'),
+        children: app.trans('core.discussion_list_load_more_button'),
         className: 'Button',
         onclick: this.loadMore.bind(this)
       });
     }
 
     if (this.discussions.length === 0 && !this.loading) {
-      const text = '看起来这里没有话题，为什么不发布一个新的呢？';
+      const text = 'Looks like there are no discussions here. Why don\'t you create a new one?';
       return (
         <div className="DiscussionList">
           {Placeholder.component({text})}

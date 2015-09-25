@@ -15,7 +15,7 @@ export default class ExtensionsPage extends Component {
         <div className="ExtensionsPage-header">
           <div className="container">
             {Button.component({
-              children: '添加插件',
+              children: 'Add Extension',
               icon: 'plus',
               className: 'Button Button--primary',
               onclick: () => app.modal.show(new AddExtensionModal())
@@ -63,14 +63,14 @@ export default class ExtensionsPage extends Component {
     if (app.extensionSettings[extension.name]) {
       items.add('settings', Button.component({
         icon: 'cog',
-        children: '设置',
+        children: 'Settings',
         onclick: app.extensionSettings[extension.name]
       }));
     }
 
     items.add('toggle', Button.component({
       icon: 'power-off',
-      children: enabled ? '停用' : '启用',
+      children: enabled ? 'Disable' : 'Enable',
       onclick: () => {
         app.request({
           url: app.forum.attribute('apiUrl') + '/extensions/' + extension.name,
@@ -85,7 +85,7 @@ export default class ExtensionsPage extends Component {
     if (!enabled) {
       items.add('uninstall', Button.component({
         icon: 'trash-o',
-        children: '卸载',
+        children: 'Uninstall',
         onclick: () => {
           app.request({
             url: app.forum.attribute('apiUrl') + '/extensions/' + extension.name,

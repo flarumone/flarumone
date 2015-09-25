@@ -1,2 +1,3 @@
 imageattachments:
   post_anyway: "There are some images which isn't uploaded.\nPost anyway?"
+  upload_failed: "(Image upload failed)"

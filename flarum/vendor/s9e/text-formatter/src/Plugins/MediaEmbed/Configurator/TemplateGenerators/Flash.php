@@ -9,37 +9,22 @@ namespace s9e\TextFormatter\Plugins\MediaEmbed\Configurator\TemplateGenerators;
 use s9e\TextFormatter\Plugins\MediaEmbed\Configurator\TemplateGenerator;
 class Flash extends TemplateGenerator
 {
-	public function getTemplate(array $attributes)
+	protected function getContentTemplate()
 	{
-		$isResponsive = $this->canBeResponsive($attributes);
-		if ($isResponsive)
-			$attributes = $this->addResponsiveStyle($attributes);
-		$template = $this->generateObjectStartTag($attributes, $isResponsive) . $this->generateEmbedElement($attributes) . '</object>';
-		if ($isResponsive)
-			$template = $this->addResponsiveWrapper($template, $attributes);
-		return $template;
-	}
-	protected function generateEmbedElement(array $attributes)
-	{
-		$attributes['allowfullscreen'] = '';
-		return '<embed type="application/x-shockwave-flash">' . $this->generateAttributes($attributes) . '</embed>';
-	}
-	protected function generateObjectStartTag(array $attributes, $isResponsive)
-	{
-		$attributes['data']          = $attributes['src'];
-		$attributes['type']          = 'application/x-shockwave-flash';
-		$attributes['typemustmatch'] = '';
-		unset($attributes['src']);
+		$attributes = array(
+			'data'          => $this->attributes['src'],
+			'style'         => $this->attributes['style'],
+			'type'          => 'application/x-shockwave-flash',
+			'typemustmatch' => ''
+		);
 		$flashVarsParam = '';
-		if (isset($attributes['flashvars']))
-		{
-			$flashVarsParam = $this->generateParamElement('flashvars', $attributes['flashvars']);
-			unset($attributes['flashvars']);
-		}
-		$template = '<object type="application/x-shockwave-flash" typemustmatch="">'
-		          . $this->generateAttributes($attributes, $isResponsive)
+		if (isset($this->attributes['flashvars']))
+			$flashVarsParam = $this->generateParamElement('flashvars', $this->attributes['flashvars']);
+		$template = '<object>'
+		          . $this->generateAttributes($attributes)
 		          . $this->generateParamElement('allowfullscreen', 'true')
-		          . $flashVarsParam;
+		          . $flashVarsParam
+		          . '</object>';
 		return $template;
 	}
 	protected function generateParamElement($paramName, $paramValue)

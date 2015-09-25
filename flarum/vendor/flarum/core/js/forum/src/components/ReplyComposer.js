@@ -2,6 +2,7 @@ import ComposerBody from 'flarum/components/ComposerBody';
 import Alert from 'flarum/components/Alert';
 import Button from 'flarum/components/Button';
 import icon from 'flarum/helpers/icon';
+import extractText from 'flarum/utils/extractText';
 
 /**
  * The `ReplyComposer` component displays the composer content for replying to a
@@ -24,9 +25,9 @@ export default class ReplyComposer extends ComposerBody {
   static initProps(props) {
     super.initProps(props);
 
-    props.placeholder = props.placeholder || app.trans('core.write_a_reply');
-    props.submitLabel = props.submitLabel || app.trans('core.post_reply');
-    props.confirmExit = props.confirmExit || app.trans('core.confirm_discard_reply');
+    props.placeholder = props.placeholder || extractText(app.trans('core.composer_reply_body_placeholder'));
+    props.submitLabel = props.submitLabel || app.trans('core.composer_reply_submit_button');
+    props.confirmExit = props.confirmExit || extractText(app.trans('core.composer_reply_discard_confirmation'));
   }
 
   headerItems() {
@@ -75,7 +76,7 @@ export default class ReplyComposer extends ComposerBody {
           let alert;
           const viewButton = Button.component({
             className: 'Button Button--link',
-            children: app.trans('core.view'),
+            children: app.trans('core.composer_reply_view_button'),
             onclick: () => {
               m.route(app.route.post(post));
               app.alerts.dismiss(alert);
@@ -84,7 +85,7 @@ export default class ReplyComposer extends ComposerBody {
           app.alerts.show(
             alert = new Alert({
               type: 'success',
-              message: app.trans('core.reply_posted'),
+              message: app.trans('core.composer_reply_posted_message'),
               controls: [viewButton]
             })
           );

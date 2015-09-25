@@ -58,6 +58,7 @@ function uploadImage (files, editor) {
   var count = editor.props.imageAttachmentsCount || 0;
   editor.images = editor.images || [];
   var j = 0;
+  var uploadIndexes = [];
   Array.prototype.forEach.call(files, function (i) {
     if (i.getAsFile) {
       i = i.getAsFile();
@@ -68,6 +69,7 @@ function uploadImage (files, editor) {
     editor.images[count] = {
       filename: i.name || 'PastedImage'
     };
+    uploadIndexes.push(count);
     data.append("images[" + count + "]", i);
     editor.insertAtCursor("!IMG_" + count + "!");
     count++;
@@ -88,11 +90,17 @@ function uploadImage (files, editor) {
     for (var id in data) {
       var url = data[id];
       var index = id.slice(4);
-      var regExp = new RegExp('!IMG_' + index + '!');
+      var regExp = new RegExp('!IMG_' + index + '!', 'g');
       value = value.replace(regExp, '![' + 
         editor.images[index].filename + 
         '](' + url + ')');
     }
     editor.setValue(value);
+  }).catch(function(err) {
+    var newValue = uploadIndexes.reduce(function(value, i) {
+      var regExp = new RegExp('!IMG_' + i + '!', 'g');
+      return value.replace(regExp, app.trans('imageattachments.upload_failed'));
+    }, editor.$('textarea').val());
+    editor.setValue(newValue);
   });
 }

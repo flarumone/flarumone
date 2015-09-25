@@ -27,9 +27,9 @@ export default class PermissionDropdown extends Dropdown {
     const adminGroup = app.store.getById('groups', Group.ADMINISTRATOR_ID);
 
     if (everyone) {
-      this.props.label = '游客';
+      this.props.label = 'Everyone';
     } else if (members) {
-      this.props.label = '注册用户';
+      this.props.label = 'Members';
     } else {
       this.props.label = [
         badgeForId(Group.ADMINISTRATOR_ID),
@@ -40,7 +40,7 @@ export default class PermissionDropdown extends Dropdown {
     if (this.props.allowGuest) {
       this.props.children.push(
         Button.component({
-          children: '游客',
+          children: 'Everyone',
           icon: everyone ? 'check' : true,
           onclick: () => this.save([Group.GUEST_ID])
         })
@@ -49,7 +49,7 @@ export default class PermissionDropdown extends Dropdown {
 
     this.props.children.push(
       Button.component({
-        children: '注册用户',
+        children: 'Members',
         icon: members ? 'check' : true,
         onclick: () => this.save([Group.MEMBER_ID])
       }),

@@ -14,13 +14,13 @@ export default class EditCustomCssModal extends Modal {
   }
 
   title() {
-    return '编辑自定义CSS';
+    return 'Edit Custom CSS';
   }
 
   content() {
     return (
       <div className="Modal-body">
-        <p>添加 LESS/CSS 代码以生成自定义样式作为默认站点外观。请详细阅读<a href="">使用文档</a></p>
+        <p>Customize your forum's appearance by adding your own LESS/CSS code to be applied on top of Flarum's default styles. <a href="">Read the documentation</a> for more information.</p>
 
         <div className="Form">
           <div className="Form-group">
@@ -31,7 +31,7 @@ export default class EditCustomCssModal extends Modal {
             {Button.component({
               className: 'Button Button--primary',
               type: 'submit',
-              children: '保存更改',
+              children: 'Save Changes',
               loading: this.loading
             })}
           </div>

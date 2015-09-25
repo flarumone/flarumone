@@ -21,9 +21,9 @@ export default class AddExtensionModal extends Modal {
   content() {
     return (
       <div className="Modal-body">
-        <p>在不久的将来，这个对话框能让你轻松地添加一个新的拓展到你的站点，我们正在构建一个新的生态系统</p>
-        <p>与此同时，如果你能获得一个新的拓展，简单地展示在你的站点 <code>extensions</code> 目录</p>
-        <p>如果你是开发者，你可以<a href="http://php.szlt.net/flarum/extend/introduction.html">阅读开发文档</a>，并开发出新的插件</p>
+        <p>One day in the not-too-distant future, this dialog will allow you to add an extension to your forum with ease. We're building an ecosystem as we speak!</p>
+        <p>In the meantime, if you manage to get your hands on a new extension, simply drop it in your forum's <code>extensions</code> directory.</p>
+        <p>If you're a developer, you can <a href="http://flarum.org/docs/extend">read the docs</a> and have a go at building your own.</p>
       </div>
     );
   }

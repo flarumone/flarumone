@@ -425,6 +425,19 @@ abstract class AVTHelper
 				throw new RuntimeException('Unknown token type');
 		return $attrValue;
 	}
+	public static function toXSL($attrValue)
+	{
+		$xsl = '';
+		foreach (self::parse($attrValue) as $_f6b3b659)
+		{
+			list($type, $content) = $_f6b3b659;
+			if ($type === 'literal')
+				$xsl .= \htmlspecialchars($content, \ENT_NOQUOTES, 'UTF-8');
+			else
+				$xsl .= '<xsl:value-of select="' . \htmlspecialchars($content, \ENT_COMPAT, 'UTF-8') . '"/>';
+		}
+		return $xsl;
+	}
 }
 
 /*
@@ -2562,7 +2575,7 @@ abstract class XPathHelper
 		$old     = $expr;
 		$strings = array();
 		$expr = \preg_replace_callback(
-			'/(?:"[^"]*"|\'[^\']*\')/',
+			'/"[^"]*"|\'[^\']*\'/',
 			function ($m) use (&$strings)
 			{
 				$uniqid = '(' . \sha1(\uniqid()) . ')';
@@ -2578,6 +2591,8 @@ abstract class XPathHelper
 		$expr = \preg_replace('/([^-a-z_0-9]) ([-a-z_0-9])/i', '$1$2', $expr);
 		$expr = \preg_replace('/(?!- -)([^-a-z_0-9]) ([^-a-z_0-9])/i', '$1$2', $expr);
 		$expr = \preg_replace('/ - ([a-z_0-9])/i', ' -$1', $expr);
+		$expr = \preg_replace('/((?:^|[ \\(])\\d+) div ?/', '$1div', $expr);
+		$expr = \preg_replace('/([^-a-z_0-9]div) (?=[$0-9@])/', '$1', $expr);
 		$expr = \strtr($expr, $strings);
 		return $expr;
 	}
@@ -3718,34 +3733,34 @@ class Quick
 			$php
 		);
 		$php = \preg_replace_callback(
-			'(' . $getAttribute . "==='(.*?(?<!\\\\)(?:\\\\\\\\)*)')s",
+			'(' . $getAttribute . "===('.*?(?<!\\\\)(?:\\\\\\\\)*'))s",
 			function ($m)
 			{
-				return '$attributes[' . $m[1] . "]==='" . \htmlspecialchars(\stripslashes($m[2]), \ENT_QUOTES) . "'";
+				return '$attributes[' . $m[1] . ']===' . \htmlspecialchars($m[2], \ENT_COMPAT);
 			},
 			$php
 		);
 		$php = \preg_replace_callback(
-			"('(.*?(?<!\\\\)(?:\\\\\\\\)*)'===" . $getAttribute . ')s',
+			"(('.*?(?<!\\\\)(?:\\\\\\\\)*')===" . $getAttribute . ')s',
 			function ($m)
 			{
-				return "'" . \htmlspecialchars(\stripslashes($m[1]), \ENT_QUOTES) . "'===\$attributes[" . $m[2] . ']';
+				return \htmlspecialchars($m[1], \ENT_COMPAT) . '===$attributes[' . $m[2] . ']';
 			},
 			$php
 		);
 		$php = \preg_replace_callback(
-			'(strpos\\(' . $getAttribute . ",'(.*?(?<!\\\\)(?:\\\\\\\\)*)'\\)([!=]==(?:0|false)))s",
+			'(strpos\\(' . $getAttribute . ",('.*?(?<!\\\\)(?:\\\\\\\\)*')\\)([!=]==(?:0|false)))s",
 			function ($m)
 			{
-				return 'strpos($attributes[' . $m[1] . "],'" . \htmlspecialchars(\stripslashes($m[2]), \ENT_QUOTES) . "')" . $m[3];
+				return 'strpos($attributes[' . $m[1] . "]," . \htmlspecialchars($m[2], \ENT_COMPAT) . ')' . $m[3];
 			},
 			$php
 		);
 		$php = \preg_replace_callback(
-			"(strpos\\('(.*?(?<!\\\\)(?:\\\\\\\\)*)'," . $getAttribute . '\\)([!=]==(?:0|false)))s',
+			"(strpos\\(('.*?(?<!\\\\)(?:\\\\\\\\)*')," . $getAttribute . '\\)([!=]==(?:0|false)))s',
 			function ($m)
 			{
-				return "strpos('" . \htmlspecialchars(\stripslashes($m[1]), \ENT_QUOTES) . "',\$attributes[" . $m[2] . '])' . $m[3];
+				return 'strpos(' . \htmlspecialchars($m[1], \ENT_COMPAT) . ',$attributes[' . $m[2] . '])' . $m[3];
 			},
 			$php
 		);
@@ -4359,12 +4374,6 @@ class XPathConvertor
 	}
 	protected function math($expr1, $operator, $expr2)
 	{
-		if (\is_numeric($expr1) && \is_numeric($expr2))
-		{
-			$result = (string) $this->resolveConstantMathExpression($expr1, $operator, $expr2);
-			if (\preg_match('(^[.0-9]+$)D', $result))
-				return $result;
-		}
 		if (!\is_numeric($expr1))
 			$expr1 = $this->convertXPath($expr1);
 		if (!\is_numeric($expr2))
@@ -4372,18 +4381,6 @@ class XPathConvertor
 		if ($operator === 'div')
 			$operator = '/';
 		return $expr1 . $operator . $expr2;
-	}
-	protected function resolveConstantMathExpression($expr1, $operator, $expr2)
-	{
-		if ($operator === '+')
-			return $expr1 + $expr2;
-		if ($operator === '-')
-			return $expr1 - $expr2;
-		if ($operator === '*')
-			return $expr1 * $expr2;
-		if ($operator === 'div')
-			return $expr1 / $expr2;
-		throw new LogicException;
 	}
 	protected function exportXPath($expr)
 	{
@@ -4497,6 +4494,16 @@ class XPathConvertor
 				'\\)'
 			)
 		);
+		$exprs = array();
+		if (\version_compare($this->pcreVersion, '8.13', '>='))
+		{
+			$exprs[] = '(?<cmp>(?<cmp0>(?&value)) (?<cmp1>!?=) (?<cmp2>(?&value)))';
+			$exprs[] = '(?<parens>\\( (?<parens0>(?&bool)|(?&cmp)|(?&math)) \\))';
+			$exprs[] = '(?<bool>(?<bool0>(?&cmp)|(?&not)|(?&value)|(?&parens)) (?<bool1>and|or) (?<bool2>(?&cmp)|(?&not)|(?&value)|(?&bool)|(?&parens)))';
+			$exprs[] = '(?<not>not \\( (?<not0>(?&bool)|(?&value)) \\))';
+			$patterns['math'][0] = \str_replace('))', ')|(?&parens))', $patterns['math'][0]);
+			$patterns['math'][1] = \str_replace('))', ')|(?&parens))', $patterns['math'][1]);
+		}
 		$valueExprs = array();
 		foreach ($patterns as $name => $pattern)
 		{
@@ -4505,14 +4512,8 @@ class XPathConvertor
 			if (\strpos($pattern, '?&') === \false || \version_compare($this->pcreVersion, '8.13', '>='))
 				$valueExprs[] = '(?<' . $name . '>' . $pattern . ')';
 		}
-		$exprs = array('(?<value>' . \implode('|', $valueExprs) . ')');
-		if (\version_compare($this->pcreVersion, '8.13', '>='))
-		{
-			$exprs[] = '(?<cmp>(?<cmp0>(?&value)) (?<cmp1>!?=) (?<cmp2>(?&value)))';
-			$exprs[] = '(?<parens>\\( (?<parens0>(?&bool)|(?&cmp)) \\))';
-			$exprs[] = '(?<bool>(?<bool0>(?&cmp)|(?&not)|(?&value)|(?&parens)) (?<bool1>and|or) (?<bool2>(?&cmp)|(?&not)|(?&value)|(?&bool)|(?&parens)))';
-			$exprs[] = '(?<not>not \\( (?<not0>(?&bool)|(?&value)) \\))';
-		}
+		\array_unshift($exprs, '(?<value>' . \implode('|', $valueExprs) . ')');
+
 		$regexp = '#^(?:' . \implode('|', $exprs) . ')$#S';
 		$regexp = \str_replace(' ', '\\s*', $regexp);
 		$this->regexp = $regexp;
@@ -5054,7 +5055,7 @@ class TemplateNormalizer implements ArrayAccess, Iterator
 		$this->collection->append('RemoveComments');
 		$this->collection->append('RemoveInterElementWhitespace');
 		$this->collection->append('FixUnescapedCurlyBracesInHtmlAttributes');
-		$this->collection->append('FoldConstants');
+		$this->collection->append('FoldArithmeticConstants');
 		$this->collection->append('InlineAttributes');
 		$this->collection->append('InlineCDATA');
 		$this->collection->append('InlineElements');
@@ -5067,6 +5068,7 @@ class TemplateNormalizer implements ArrayAccess, Iterator
 		$this->collection->append('NormalizeUrls');
 		$this->collection->append('OptimizeConditionalAttributes');
 		$this->collection->append('OptimizeConditionalValueOf');
+		$this->collection->append('OptimizeChoose');
 	}
 	public function normalizeTag(Tag $tag)
 	{
@@ -6852,6 +6854,58 @@ namespace s9e\TextFormatter\Configurator\TemplateNormalizations;
 use DOMAttr;
 use DOMElement;
 use DOMXPath;
+use s9e\TextFormatter\Configurator\Helpers\AVTHelper;
+use s9e\TextFormatter\Configurator\TemplateNormalization;
+abstract class AbstractConstantFolding extends TemplateNormalization
+{
+	abstract protected function getOptimizationPasses();
+	public function normalize(DOMElement $template)
+	{
+		$xpath = new DOMXPath($template->ownerDocument);
+		$query = '//*[namespace-uri() != "' . self::XMLNS_XSL . '"]/@*[contains(.,"{")]';
+		foreach ($xpath->query($query) as $attribute)
+			$this->replaceAVT($attribute);
+		foreach ($template->getElementsByTagNameNS(self::XMLNS_XSL, 'value-of') as $valueOf)
+			$this->replaceValueOf($valueOf);
+	}
+	public function evaluateExpression($expr)
+	{
+		$original = $expr;
+		foreach ($this->getOptimizationPasses() as $regexp => $methodName)
+		{
+			$regexp = \str_replace(' ', '\\s*', $regexp);
+			$expr   = \preg_replace_callback($regexp, array($this, $methodName), $expr);
+		}
+		return ($expr === $original) ? $expr : $this->evaluateExpression(\trim($expr));
+	}
+	protected function replaceAVT(DOMAttr $attribute)
+	{
+		$_this = $this;
+		AVTHelper::replace(
+			$attribute,
+			function ($token) use ($_this)
+			{
+				if ($token[0] === 'expression')
+					$token[1] = $_this->evaluateExpression($token[1]);
+				return $token;
+			}
+		);
+	}
+	protected function replaceValueOf(DOMElement $valueOf)
+	{
+		$valueOf->setAttribute('select', $this->evaluateExpression($valueOf->getAttribute('select')));
+	}
+}
+
+/*
+* @package   s9e\TextFormatter
+* @copyright Copyright (c) 2010-2015 The s9e Authors
+* @license   http://www.opensource.org/licenses/mit-license.php The MIT License
+*/
+namespace s9e\TextFormatter\Configurator\TemplateNormalizations;
+use DOMAttr;
+use DOMElement;
+use DOMXPath;
 use s9e\TextFormatter\Configurator\TemplateNormalization;
 class FixUnescapedCurlyBracesInHtmlAttributes extends TemplateNormalization
 {
@@ -6876,47 +6930,6 @@ class FixUnescapedCurlyBracesInHtmlAttributes extends TemplateNormalization
 			),
 			\ENT_NOQUOTES,
 			'UTF-8'
-		);
-	}
-}
-
-/*
-* @package   s9e\TextFormatter
-* @copyright Copyright (c) 2010-2015 The s9e Authors
-* @license   http://www.opensource.org/licenses/mit-license.php The MIT License
-*/
-namespace s9e\TextFormatter\Configurator\TemplateNormalizations;
-use DOMAttr;
-use DOMElement;
-use DOMXPath;
-use s9e\TextFormatter\Configurator\Helpers\AVTHelper;
-use s9e\TextFormatter\Configurator\TemplateNormalization;
-class FoldConstants extends TemplateNormalization
-{
-	public function normalize(DOMElement $template)
-	{
-		$xpath = new DOMXPath($template->ownerDocument);
-		$query = '//*[namespace-uri() != "' . self::XMLNS_XSL . '"]/@*[contains(.,"{")]';
-		foreach ($xpath->query($query) as $attribute)
-			$this->replaceAVT($attribute);
-	}
-	public function evaluateExpression($expr)
-	{
-		if (\preg_match('(^(\\d+)\\s*\\+\\s*(\\d+)$)', $expr, $m))
-			return $m[1] + $m[2];
-		return $expr;
-	}
-	protected function replaceAVT(DOMAttr $attribute)
-	{
-		$_this = $this;
-		AVTHelper::replace(
-			$attribute,
-			function ($token) use ($_this)
-			{
-				if ($token[0] === 'expression')
-					$token[1] = $_this->evaluateExpression($token[1]);
-				return $token;
-			}
 		);
 	}
 }
@@ -7152,7 +7165,7 @@ class InlineXPathLiterals extends TemplateNormalization
 		$expr = \trim($expr);
 		if (\preg_match('(^(?:\'[^\']*\'|"[^"]*")$)', $expr))
 			return \substr($expr, 1, -1);
-		if (\preg_match('(^0*([0-9]+)$)', $expr, $m))
+		if (\preg_match('(^0*([0-9]+(?:\\.[0-9]+)?)$)', $expr, $m))
 			return $m[1];
 		return \false;
 	}
@@ -7330,6 +7343,172 @@ class NormalizeUrls extends TemplateNormalization
 	protected function unescapeBrackets($url)
 	{
 		return \preg_replace('#^(\\w+://)%5B([-\\w:._%]+)%5D#i', '$1[$2]', $url);
+	}
+}
+
+/*
+* @package   s9e\TextFormatter
+* @copyright Copyright (c) 2010-2015 The s9e Authors
+* @license   http://www.opensource.org/licenses/mit-license.php The MIT License
+*/
+namespace s9e\TextFormatter\Configurator\TemplateNormalizations;
+use DOMElement;
+use DOMNode;
+use DOMXPath;
+use s9e\TextFormatter\Configurator\TemplateNormalization;
+class OptimizeChoose extends TemplateNormalization
+{
+	protected $choose;
+	protected $xpath;
+	public function normalize(DOMElement $template)
+	{
+		$this->xpath = new DOMXPath($template->ownerDocument);
+		$query       = '//xsl:choose';
+		foreach ($this->xpath->query($query) as $choose)
+		{
+			$this->choose = $choose;
+			$this->optimizeChooseElement();
+		}
+	}
+	protected function adoptChildren(DOMElement $branch)
+	{
+		foreach ($branch->firstChild->childNodes as $childNode)
+			$branch->appendChild($branch->firstChild->removeChild($childNode));
+		$branch->removeChild($branch->firstChild);
+	}
+	protected function getAttributes(DOMElement $element)
+	{
+		$attributes = array();
+		foreach ($element->attributes as $attribute)
+		{
+			$key = $attribute->namespaceURI . '#' . $attribute->nodeName;
+			$attributes[$key] = $attribute->nodeValue;
+		}
+		return $attributes;
+	}
+	protected function getBranches()
+	{
+		$query = 'xsl:when|xsl:otherwise';
+		$nodes = array();
+		foreach ($this->xpath->query($query, $this->choose) as $node)
+			$nodes[] = $node;
+		return $nodes;
+	}
+	protected function hasNoContent()
+	{
+		$query = 'count(xsl:when/node() | xsl:otherwise/node())';
+		return !$this->xpath->evaluate($query, $this->choose);
+	}
+	protected function hasOtherwise()
+	{
+		return (bool) $this->xpath->evaluate('count(xsl:otherwise)', $this->choose);
+	}
+	protected function isEqualNode(DOMNode $node1, DOMNode $node2)
+	{
+		return ($node1->ownerDocument->saveXML($node1) === $node2->ownerDocument->saveXML($node2));
+	}
+	protected function isEqualTag(DOMElement $el1, DOMElement $el2)
+	{
+		return ($el1->namespaceURI === $el2->namespaceURI && $el1->nodeName === $el2->nodeName && $this->getAttributes($el1) === $this->getAttributes($el2));
+	}
+	protected function matchBranches($childType)
+	{
+		$branches = $this->getBranches();
+		if (!isset($branches[0]->$childType))
+			return \false;
+		$childNode = $branches[0]->$childType;
+		foreach ($branches as $branch)
+			if (!isset($branch->$childType) || !$this->isEqualNode($childNode, $branch->$childType))
+				return \false;
+		return \true;
+	}
+	protected function matchOnlyChild()
+	{
+		$branches = $this->getBranches();
+		if (!isset($branches[0]->firstChild))
+			return \false;
+		$firstChild = $branches[0]->firstChild;
+		foreach ($branches as $branch)
+		{
+			if ($branch->childNodes->length !== 1 || !($branch->firstChild instanceof DOMElement))
+				return \false;
+			if (!$this->isEqualTag($firstChild, $branch->firstChild))
+				return \false;
+		}
+		return \true;
+	}
+	protected function moveFirstChildBefore()
+	{
+		$branches = $this->getBranches();
+		$this->choose->parentNode->insertBefore(\array_pop($branches)->firstChild, $this->choose);
+		foreach ($branches as $branch)
+			$branch->removeChild($branch->firstChild);
+	}
+	protected function moveLastChildAfter()
+	{
+		$branches = $this->getBranches();
+		$node     = \array_pop($branches)->lastChild;
+		if (isset($this->choose->nextSibling))
+			$this->choose->parentNode->insertBefore($node, $this->choose->nextSibling);
+		else
+			$this->choose->parentNode->appendChild($node);
+		foreach ($branches as $branch)
+			$branch->removeChild($branch->lastChild);
+	}
+	protected function optimizeChooseElement()
+	{
+		$this->optimizeCommonFirstChild();
+		$this->optimizeCommonLastChild();
+		$this->optimizeCommonOnlyChild();
+		$this->optimizeEmptyOtherwise();
+		if ($this->hasNoContent())
+			$this->choose->parentNode->removeChild($this->choose);
+		else
+			$this->optimizeSingleBranch();
+	}
+	protected function optimizeCommonFirstChild()
+	{
+		if ($this->hasOtherwise())
+			while ($this->matchBranches('firstChild'))
+				$this->moveFirstChildBefore();
+	}
+	protected function optimizeCommonLastChild()
+	{
+		if ($this->hasOtherwise())
+			while ($this->matchBranches('lastChild'))
+				$this->moveLastChildAfter();
+	}
+	protected function optimizeCommonOnlyChild()
+	{
+		if ($this->hasOtherwise())
+			while ($this->matchOnlyChild())
+				$this->reparentChild();
+	}
+	protected function optimizeEmptyOtherwise()
+	{
+		$query = 'xsl:otherwise[count(node()) = 0]';
+		foreach ($this->xpath->query($query, $this->choose) as $otherwise)
+			$this->choose->removeChild($otherwise);
+	}
+	protected function optimizeSingleBranch()
+	{
+		$query = 'count(xsl:when) = 1 and not(xsl:otherwise)';
+		if (!$this->xpath->evaluate($query, $this->choose))
+			return;
+		$when = $this->xpath->query('xsl:when', $this->choose)->item(0);
+		$if   = $this->choose->ownerDocument->createElementNS(self::XMLNS_XSL, 'xsl:if');
+		$if->setAttribute('test', $when->getAttribute('test'));
+		while ($when->firstChild)
+			$if->appendChild($when->removeChild($when->firstChild));
+		$this->choose->parentNode->replaceChild($if, $this->choose);
+	}
+	protected function reparentChild()
+	{
+		$branches  = $this->getBranches();
+		$childNode = $branches[0]->firstChild->cloneNode();
+		$childNode->appendChild($this->choose->parentNode->replaceChild($childNode, $this->choose));
+		foreach ($branches as $branch)
+			$this->adoptChildren($branch);
 	}
 }
 
@@ -8011,6 +8190,72 @@ class RestrictFlashScriptAccess extends AbstractFlashRestriction
 		'samedomain' => 2,
 		'never'      => 1
 	);
+}
+
+/*
+* @package   s9e\TextFormatter
+* @copyright Copyright (c) 2010-2015 The s9e Authors
+* @license   http://www.opensource.org/licenses/mit-license.php The MIT License
+*/
+namespace s9e\TextFormatter\Configurator\TemplateNormalizations;
+class FoldArithmeticConstants extends AbstractConstantFolding
+{
+	protected function getOptimizationPasses()
+	{
+		return array(
+			'(^(\\d+) \\+ (\\d+)((?> \\+ \\d+)*)$)'  => 'foldAddition',
+			'( \\+ 0(?! [^+\\)])|(?<![-\\w])0 \\+ )' => 'foldAdditiveIdentity',
+			'(^((?>\\d+ [-+] )*)(\\d+) div (\\d+))'  => 'foldDivision',
+			'(^((?>\\d+ [-+] )*)(\\d+) \\* (\\d+))'  => 'foldMultiplication',
+			'(\\( \\d+ (?>(?>[-+*]|div) \\d+ )+\\))' => 'foldSubExpression',
+			'((?<=[-+*\\(]|\\bdiv|^) \\( ([@$][-\\w]+|\\d+(?>\\.\\d+)?) \\) (?=[-+*\\)]|div|$))' => 'removeParentheses'
+		);
+	}
+	public function evaluateExpression($expr)
+	{
+		$expr = \preg_replace_callback(
+			'(([\'"])(.*?)\\1)s',
+			function ($m)
+			{
+				return $m[1] . \bin2hex($m[2]) . $m[1];
+			},
+			$expr
+		);
+		$expr = parent::evaluateExpression($expr);
+		$expr = \preg_replace_callback(
+			'(([\'"])(.*?)\\1)s',
+			function ($m)
+			{
+				return $m[1] . \pack('H*', $m[2]) . $m[1];
+			},
+			$expr
+		);
+		return $expr;
+	}
+	protected function foldAddition(array $m)
+	{
+		return ($m[1] + $m[2]) . (empty($m[3]) ? '' : $this->evaluateExpression($m[3]));
+	}
+	protected function foldAdditiveIdentity(array $m)
+	{
+		return '';
+	}
+	protected function foldDivision(array $m)
+	{
+		return $m[1] . ($m[2] / $m[3]);
+	}
+	protected function foldMultiplication(array $m)
+	{
+		return $m[1] . ($m[2] * $m[3]);
+	}
+	protected function foldSubExpression(array $m)
+	{
+		return '(' . $this->evaluateExpression(\trim(\substr($m[0], 1, -1))) . ')';
+	}
+	protected function removeParentheses(array $m)
+	{
+		return ' ' . $m[1] . ' ';
+	}
 }
 
 /*

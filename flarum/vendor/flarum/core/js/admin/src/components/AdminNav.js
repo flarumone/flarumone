@@ -35,36 +35,36 @@ export default class AdminNav extends Component {
     items.add('dashboard', AdminLinkButton.component({
       href: app.route('dashboard'),
       icon: 'bar-chart',
-      children: '控制台',
-      description: '各项数据，一目了然'
+      children: 'Dashboard',
+      description: 'Your forum at a glance.'
     }));
 
     items.add('basics', AdminLinkButton.component({
       href: app.route('basics'),
       icon: 'pencil',
-      children: '基本',
-      description: '修改您的站点名称、语言和其他基本设置'
+      children: 'Basics',
+      description: 'Set your forum title, language, and other basic settings.'
     }));
 
     items.add('permissions', AdminLinkButton.component({
       href: app.route('permissions'),
       icon: 'key',
-      children: '权限',
-      description: '配置各用户组允许访问的内容和操作权限'
+      children: 'Permissions',
+      description: 'Configure who can see and do what.'
     }));
 
     items.add('appearance', AdminLinkButton.component({
       href: app.route('appearance'),
       icon: 'paint-brush',
-      children: '主题',
-      description: '自定义页面颜色、徽标和其他变量'
+      children: 'Appearance',
+      description: 'Customize your forum\'s colors, logos, and other variables.'
     }));
 
     items.add('extensions', AdminLinkButton.component({
       href: app.route('extensions'),
       icon: 'puzzle-piece',
-      children: '插件',
-      description: '添加额外的功能到您的站点'
+      children: 'Extensions',
+      description: 'Add extra functionality to your forum and make it your own.'
     }));
 
     return items;

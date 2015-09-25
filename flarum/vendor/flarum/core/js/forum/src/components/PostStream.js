@@ -181,7 +181,7 @@ class PostStream extends mixin(Component, evented) {
       .map(id => {
         const post = app.store.getById('posts', id);
 
-        return post && post.discussion() && post.user() !== false ? post : null;
+        return post && post.discussion() && post.user() !== false && post.canEdit() !== null ? post : null;
       });
   }
 
@@ -221,7 +221,7 @@ class PostStream extends mixin(Component, evented) {
             if (dt > 1000 * 60 * 60 * 24 * 4) {
               content = [
                 <div className="PostStream-timeGap">
-                  <span>{app.trans('core.period_later', {period: moment.duration(dt).humanize()})}</span>
+                  <span>{app.trans('core.post_stream_time_lapsed_text', {period: moment.duration(dt).humanize()})}</span>
                 </div>,
                 content
               ];

@@ -1,0 +1,20 @@
+tags:
+  tags: 标签
+  discussion_tagged_post:
+    one: "{username} {action} 标签"
+    other: "{username} {action} 标签"
+  added_tags: "添加这个 {tags}"
+  removed_tags: "移除这个 {tags}"
+  tag_new_discussion_title: 给帖子选择标签
+  tag_new_discussion_link: 选择标签
+  edit_discussion_tags_title: "编辑 {title} 的标签"
+  edit_discussion_tags_link: 编辑标签
+  choose_primary_tags:
+    one: 选择1个主标签
+    other: "选择{count}个主标签"
+  choose_secondary_tags:
+    one: 选择1个次标签
+    other: "选择{count}个次标签"
+  confirm: 确定
+  more: 更多...
+  deleted: 删除

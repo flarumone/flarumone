@@ -648,12 +648,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/flarum/core.git",
-                "reference": "69a50565bb74191019ebd0e777fffc26f40f43fb"
+                "reference": "538a3e5e985df736defc76d7e0422eb1b9c0a3d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flarum/core/zipball/69a50565bb74191019ebd0e777fffc26f40f43fb",
-                "reference": "69a50565bb74191019ebd0e777fffc26f40f43fb",
+                "url": "https://api.github.com/repos/flarum/core/zipball/538a3e5e985df736defc76d7e0422eb1b9c0a3d3",
+                "reference": "538a3e5e985df736defc76d7e0422eb1b9c0a3d3",
                 "shasum": ""
             },
             "require": {
@@ -678,7 +678,7 @@
                 "oyejorge/less.php": "~1.5",
                 "php": ">=5.5.9",
                 "psr/http-message": "^1.0",
-                "s9e/text-formatter": "^0.3.2",
+                "s9e/text-formatter": "^0.4.0",
                 "symfony/console": "^2.7",
                 "symfony/yaml": "^2.7",
                 "tobscure/json-api": "^0.1.1",
@@ -704,7 +704,7 @@
                     "email": "toby@flarum.org"
                 }
             ],
-            "time": "2015-09-23 01:22:26"
+            "time": "2015-09-25 14:14:15"
         },
         {
             "name": "franzl/whoops-middleware",
@@ -1774,16 +1774,16 @@
         },
         {
             "name": "oyejorge/less.php",
-            "version": "v1.7.0.7",
+            "version": "v1.7.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "f196688753959847a36c3512fe7b921d06aca6c9"
+                "reference": "ed2c8948ec548deaeece1731bbfdcdfc0e80d08e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/f196688753959847a36c3512fe7b921d06aca6c9",
-                "reference": "f196688753959847a36c3512fe7b921d06aca6c9",
+                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/ed2c8948ec548deaeece1731bbfdcdfc0e80d08e",
+                "reference": "ed2c8948ec548deaeece1731bbfdcdfc0e80d08e",
                 "shasum": ""
             },
             "require": {
@@ -1829,7 +1829,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2015-09-17 22:09:16"
+            "time": "2015-09-24 18:00:51"
         },
         {
             "name": "psr/http-message",
@@ -1920,16 +1920,16 @@
         },
         {
             "name": "s9e/text-formatter",
-            "version": "0.3.2",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/s9e/TextFormatter.git",
-                "reference": "4db4d250735125274c8cfd1ac41ef76eae7d15e8"
+                "reference": "0ad4f5d80542819d0bae9047d39566ab0df55c53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/s9e/TextFormatter/zipball/4db4d250735125274c8cfd1ac41ef76eae7d15e8",
-                "reference": "4db4d250735125274c8cfd1ac41ef76eae7d15e8",
+                "url": "https://api.github.com/repos/s9e/TextFormatter/zipball/0ad4f5d80542819d0bae9047d39566ab0df55c53",
+                "reference": "0ad4f5d80542819d0bae9047d39566ab0df55c53",
                 "shasum": ""
             },
             "require": {
@@ -1975,7 +1975,7 @@
                 "parser",
                 "shortcodes"
             ],
-            "time": "2015-09-06 18:52:07"
+            "time": "2015-09-22 23:26:41"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2032,16 +2032,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v2.7.4",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
-                "reference": "9ff9032151186bd66ecee727d728f1319f52d1d8"
+                "url": "https://github.com/symfony/console.git",
+                "reference": "06cb17c013a82f94a3d840682b49425cd00a2161"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/9ff9032151186bd66ecee727d728f1319f52d1d8",
-                "reference": "9ff9032151186bd66ecee727d728f1319f52d1d8",
+                "url": "https://api.github.com/repos/symfony/console/zipball/06cb17c013a82f94a3d840682b49425cd00a2161",
+                "reference": "06cb17c013a82f94a3d840682b49425cd00a2161",
                 "shasum": ""
             },
             "require": {
@@ -2085,20 +2085,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-03 11:40:38"
+            "time": "2015-09-25 08:32:23"
         },
         {
             "name": "symfony/finder",
-            "version": "v2.7.4",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Finder.git",
-                "reference": "fff4b0c362640a0ab7355e2647b3d461608e9065"
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "8262ab605973afbb3ef74b945daabf086f58366f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/fff4b0c362640a0ab7355e2647b3d461608e9065",
-                "reference": "fff4b0c362640a0ab7355e2647b3d461608e9065",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/8262ab605973afbb3ef74b945daabf086f58366f",
+                "reference": "8262ab605973afbb3ef74b945daabf086f58366f",
                 "shasum": ""
             },
             "require": {
@@ -2134,20 +2134,20 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-26 17:56:37"
+            "time": "2015-09-19 19:59:23"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v2.7.4",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "7253c2041652353e71560bbd300d6256d170ddaf"
+                "url": "https://github.com/symfony/http-foundation.git",
+                "reference": "e1509119f164a0d0a940d7d924d693a7a28a5470"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/7253c2041652353e71560bbd300d6256d170ddaf",
-                "reference": "7253c2041652353e71560bbd300d6256d170ddaf",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/e1509119f164a0d0a940d7d924d693a7a28a5470",
+                "reference": "e1509119f164a0d0a940d7d924d693a7a28a5470",
                 "shasum": ""
             },
             "require": {
@@ -2187,19 +2187,19 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-27 06:45:45"
+            "time": "2015-09-22 13:49:29"
         },
         {
             "name": "symfony/translation",
-            "version": "v2.7.4",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Translation.git",
+                "url": "https://github.com/symfony/translation.git",
                 "reference": "485877661835e188cd78345c6d4eef1290d17571"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Translation/zipball/485877661835e188cd78345c6d4eef1290d17571",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/485877661835e188cd78345c6d4eef1290d17571",
                 "reference": "485877661835e188cd78345c6d4eef1290d17571",
                 "shasum": ""
             },
@@ -2252,16 +2252,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.7.4",
+            "version": "v2.7.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Yaml.git",
-                "reference": "2dc7b06c065df96cc686c66da2705e5e18aef661"
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "31cb2ad0155c95b88ee55fe12bc7ff92232c1770"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/2dc7b06c065df96cc686c66da2705e5e18aef661",
-                "reference": "2dc7b06c065df96cc686c66da2705e5e18aef661",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/31cb2ad0155c95b88ee55fe12bc7ff92232c1770",
+                "reference": "31cb2ad0155c95b88ee55fe12bc7ff92232c1770",
                 "shasum": ""
             },
             "require": {
@@ -2297,7 +2297,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-08-24 07:13:45"
+            "time": "2015-09-14 14:14:09"
         },
         {
             "name": "tobscure/json-api",

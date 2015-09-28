@@ -1,0 +1,21 @@
+{
+    "name": "github",
+    "title": "GitHub",
+    "description": "Allow users to log in with GitHub.",
+    "keywords": [],
+    "version": "0.1.0-beta.2",
+    "author": {
+        "name": "Toby Zerner",
+        "email": "toby@flarum.org",
+        "homepage": "http://tobyzerner.com"
+    },
+    "license": "MIT",
+    "require": {
+        "flarum": ">0.1.0-beta.2"
+    },
+    "icon": {
+        "name": "github",
+        "backgroundColor": "#eee",
+        "color": "#333"
+    }
+}

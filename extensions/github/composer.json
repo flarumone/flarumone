@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Flarum\\Github\\": "src/"
+        }
+    },
+    "require": {
+        "league/oauth2-github": "^0.2.0"
+    }
+}

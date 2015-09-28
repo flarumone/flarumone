@@ -3,8 +3,8 @@ tags:
   discussion_tagged_post:
     one: "{username} {action} 标签"
     other: "{username} {action} 标签"
-  added_tags: "添加这个 {tags}"
-  removed_tags: "移除这个 {tags}"
+  added_tags: "添加 {tags}"
+  removed_tags: "移除 {tags}"
   tag_new_discussion_title: 给帖子选择标签
   tag_new_discussion_link: 选择标签
   edit_discussion_tags_title: "编辑 {title} 的标签"

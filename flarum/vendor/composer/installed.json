@@ -266,17 +266,17 @@
     },
     {
         "name": "s9e/text-formatter",
-        "version": "0.4.0",
-        "version_normalized": "0.4.0.0",
+        "version": "0.4.1",
+        "version_normalized": "0.4.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/s9e/TextFormatter.git",
-            "reference": "0ad4f5d80542819d0bae9047d39566ab0df55c53"
+            "reference": "df483d282af2d02da3c455a66254ddd667aea2ca"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/s9e/TextFormatter/zipball/0ad4f5d80542819d0bae9047d39566ab0df55c53",
-            "reference": "0ad4f5d80542819d0bae9047d39566ab0df55c53",
+            "url": "https://api.github.com/repos/s9e/TextFormatter/zipball/df483d282af2d02da3c455a66254ddd667aea2ca",
+            "reference": "df483d282af2d02da3c455a66254ddd667aea2ca",
             "shasum": ""
         },
         "require": {
@@ -293,7 +293,7 @@
             "ext-xsl": "Enables the XSLT renderer",
             "ext-zlib": "Enables gzip compression when scraping content via the MediaEmbed plugin"
         },
-        "time": "2015-09-22 23:26:41",
+        "time": "2015-09-27 09:40:06",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -327,23 +327,23 @@
     },
     {
         "name": "oyejorge/less.php",
-        "version": "v1.7.0.8",
-        "version_normalized": "1.7.0.8",
+        "version": "v1.7.0.9",
+        "version_normalized": "1.7.0.9",
         "source": {
             "type": "git",
             "url": "https://github.com/oyejorge/less.php.git",
-            "reference": "ed2c8948ec548deaeece1731bbfdcdfc0e80d08e"
+            "reference": "fb64e2f6ef647a229c50e9fa0f2076240a3484c6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/oyejorge/less.php/zipball/ed2c8948ec548deaeece1731bbfdcdfc0e80d08e",
-            "reference": "ed2c8948ec548deaeece1731bbfdcdfc0e80d08e",
+            "url": "https://api.github.com/repos/oyejorge/less.php/zipball/fb64e2f6ef647a229c50e9fa0f2076240a3484c6",
+            "reference": "fb64e2f6ef647a229c50e9fa0f2076240a3484c6",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3"
         },
-        "time": "2015-09-24 18:00:51",
+        "time": "2015-09-28 01:11:47",
         "bin": [
             "bin/lessc"
         ],

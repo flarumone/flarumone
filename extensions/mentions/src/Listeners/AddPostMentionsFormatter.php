@@ -41,7 +41,7 @@ class AddPostMentionsFormatter
             ->prepend([static::class, 'addId'])
             ->setJS('function() { return true; }');
 
-        $configurator->Preg->match('/\B@(?<username>[a-z0-9_-]+)#(?<id>\d+)/i', $tagName);
+        $configurator->Preg->match('/\B@(?<username>[-_a-zA-Z0-9\x7f-\xff]+)#(?<id>\d+)/i', $tagName);
     }
 
     public static function addId($tag)

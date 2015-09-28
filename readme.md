@@ -3,7 +3,7 @@
 **[FlarumOne](http://flarumone.com) 基于 Flarum 轻论坛的中文增强发行版**
 Flarum 是一款优雅简洁论坛软件，让在线交流变得更加轻松愉快
 FlarumOne 主要亮点是尽可能的适应国内使用场景，首先对其进行汉化并使其支持多语言切换，其次优化中文搜索，并改默认google字体的cdn为中科大提供  
-与此同时，我们也推出了专为**[FlarumOne深度优化的LNMP一键环境包](http://flarumone.com)**，欢迎体验并反馈
+与此同时，我们也推出了专为**[FlarumOne深度优化的LNMP一键环境包](http://flarumone.github.io/lnmp/)**，欢迎体验并反馈
 让FlarumOne更符合国人使用习惯，是我们不懈的追求，也期待您的加入，么么哒
 
 ## 已集成扩展
@@ -34,8 +34,9 @@ tags | 标签
 instructions | 设置一个发帖和回复时的友情提醒
 smtp | 可视化的smtp配置扩展
 approval | 审帖功能，审核新帖子和回复
+github | 全球最大的同性交由平台`github`的第三方登陆插件
 
-[下载](https://github.com/flarumone/flarumone/releases) - [文档](http://php.szlt.net/flarum/index.html) - [支持](http://flarumone.com)
+[下载](https://github.com/flarumone/flarumone/releases) - [文档](http://php.szlt.net/flarum/preface/introduction.html) - [支持](http://flarumone.com)
 
 ![截图](http://flarum.org/img/screenshot.png)
 
@@ -44,6 +45,13 @@ approval | 审帖功能，审核新帖子和回复
 
 想立即使用 FlarumOne，可以到[下载](https://github.com/flarumone/flarumone/releases)页面。
 你需要一个安装了 **PHP 5.5+** 和 **MySQL 5.5+** 的服务器。
+
+## 推荐
+如果大家的linux基础不太好，推荐你使用我非常看好这个项目**[FlarumOne深度优化的LNMP一键环境包](http://flarumone.github.io/lnmp/)**，因为它很直爆的帮助同学们解决了配置Flarum运行环境的难题
+我们运用了沉淀多年的运维经验，秉承精益求精和快速响应的工作态度，悉心打造出这个更简单、聪明、好用的Flarum专用版LNMP一键环境包，希望能对你的工作和学习带来帮助
+
+### 帮助
+也可以到FlarumOne论坛**FlarumOne**版块发帖求助 https://flarumone.com/t/flarumone 
 
 ## 亮点
 Flarum 继承于 [esoTalk](http://esotalk.org) 和 [FluxBB](http://fluxbb.org)

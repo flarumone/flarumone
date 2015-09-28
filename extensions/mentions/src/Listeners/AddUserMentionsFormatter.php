@@ -47,7 +47,7 @@ class AddUserMentionsFormatter
             ->addParameterByName('userRepository')
             ->setJS('function() { return true; }');
 
-        $configurator->Preg->match('/\B@(?<username>[a-z0-9_-]+)(?!#)/i', $tagName);
+        $configurator->Preg->match('/\B@(?<username>[-_a-zA-Z0-9\x7f-\xff]+)(?!#)/i', $tagName);
     }
 
     public function parse(FormatterParser $event)
@@ -63,7 +63,7 @@ class AddUserMentionsFormatter
 
     public static function addId($tag, UserRepository $users)
     {
-        if ($id = $users->getIdForUsername($tag->getAttribute('username'))) {
+        if ($id = $users->getIdForUsername(rawurlencode($tag->getAttribute('username')))) {
             $tag->setAttribute('id', $id);
 
             return true;

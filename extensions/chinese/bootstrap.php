@@ -43,5 +43,7 @@ return function (Dispatcher $events) {
                 $event->addTranslations($locale, $file->getPathname());
             }
         }
+
+        app('Flarum\Core\Settings\SettingsRepository')->set('default_locale', $locale);
     });
 };

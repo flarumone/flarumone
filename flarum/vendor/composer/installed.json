@@ -1,5 +1,51 @@
 [
     {
+        "name": "zendframework/zend-escaper",
+        "version": "2.5.1",
+        "version_normalized": "2.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-escaper.git",
+            "reference": "a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-escaper/zipball/a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73",
+            "reference": "a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.23"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-06-03 14:05:37",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev",
+                "dev-develop": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Escaper\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "homepage": "https://github.com/zendframework/zend-escaper",
+        "keywords": [
+            "escaper",
+            "zf2"
+        ]
+    },
+    {
         "name": "psr/http-message",
         "version": "1.0",
         "version_normalized": "1.0.0.0",
@@ -48,6 +94,60 @@
             "psr-7",
             "request",
             "response"
+        ]
+    },
+    {
+        "name": "zendframework/zend-stratigility",
+        "version": "1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-stratigility.git",
+            "reference": "6a3b7e601dfe7eca0652a8b7f1a469ff4b8f3c28"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-stratigility/zipball/6a3b7e601dfe7eca0652a8b7f1a469ff4b8f3c28",
+            "reference": "6a3b7e601dfe7eca0652a8b7f1a469ff4b8f3c28",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.8",
+            "psr/http-message": "~1.0.0",
+            "zendframework/zend-escaper": "~2.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.7",
+            "squizlabs/php_codesniffer": "^2.3.1",
+            "zendframework/zend-diactoros": "~1.0"
+        },
+        "suggest": {
+            "psr/http-message-implementation": "Please install a psr/http-message-implementation to consume Stratigility; e.g., zendframework/zend-diactoros"
+        },
+        "time": "2015-08-25 18:39:13",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev",
+                "dev-develop": "1.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Stratigility\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "Middleware for PHP",
+        "homepage": "https://github.com/zendframework/zend-stratigility",
+        "keywords": [
+            "http",
+            "middleware",
+            "psr-7"
         ]
     },
     {
@@ -2252,12 +2352,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/flarum/core.git",
-            "reference": "538a3e5e985df736defc76d7e0422eb1b9c0a3d3"
+            "reference": "4e5b3099f8adbf925a054fda0a8ed9859db81d93"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/flarum/core/zipball/538a3e5e985df736defc76d7e0422eb1b9c0a3d3",
-            "reference": "538a3e5e985df736defc76d7e0422eb1b9c0a3d3",
+            "url": "https://api.github.com/repos/flarum/core/zipball/4e5b3099f8adbf925a054fda0a8ed9859db81d93",
+            "reference": "4e5b3099f8adbf925a054fda0a8ed9859db81d93",
             "shasum": ""
         },
         "require": {
@@ -2286,13 +2386,15 @@
             "symfony/console": "^2.7",
             "symfony/yaml": "^2.7",
             "tobscure/json-api": "^0.1.1",
-            "zendframework/zend-diactoros": "^1.1"
+            "zendframework/zend-diactoros": "^1.1",
+            "zendframework/zend-stratigility": "^1.1"
         },
         "require-dev": {
-            "phpspec/phpspec": "^2.2",
+            "mockery/mockery": "^0.9.4",
+            "phpunit/phpunit": "^4.8",
             "squizlabs/php_codesniffer": "2.*"
         },
-        "time": "2015-09-25 14:14:15",
+        "time": "2015-09-29 08:16:05",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -2387,106 +2489,6 @@
             "log",
             "logging",
             "psr-3"
-        ]
-    },
-    {
-        "name": "zendframework/zend-escaper",
-        "version": "2.5.1",
-        "version_normalized": "2.5.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/zendframework/zend-escaper.git",
-            "reference": "a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zend-escaper/zipball/a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73",
-            "reference": "a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.23"
-        },
-        "require-dev": {
-            "fabpot/php-cs-fixer": "1.7.*",
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2015-06-03 14:05:37",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.5-dev",
-                "dev-develop": "2.6-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Zend\\Escaper\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "homepage": "https://github.com/zendframework/zend-escaper",
-        "keywords": [
-            "escaper",
-            "zf2"
-        ]
-    },
-    {
-        "name": "zendframework/zend-stratigility",
-        "version": "1.1.1",
-        "version_normalized": "1.1.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/zendframework/zend-stratigility.git",
-            "reference": "6a3b7e601dfe7eca0652a8b7f1a469ff4b8f3c28"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zend-stratigility/zipball/6a3b7e601dfe7eca0652a8b7f1a469ff4b8f3c28",
-            "reference": "6a3b7e601dfe7eca0652a8b7f1a469ff4b8f3c28",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.8",
-            "psr/http-message": "~1.0.0",
-            "zendframework/zend-escaper": "~2.3"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.7",
-            "squizlabs/php_codesniffer": "^2.3.1",
-            "zendframework/zend-diactoros": "~1.0"
-        },
-        "suggest": {
-            "psr/http-message-implementation": "Please install a psr/http-message-implementation to consume Stratigility; e.g., zendframework/zend-diactoros"
-        },
-        "time": "2015-08-25 18:39:13",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0-dev",
-                "dev-develop": "1.1-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Zend\\Stratigility\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "description": "Middleware for PHP",
-        "homepage": "https://github.com/zendframework/zend-stratigility",
-        "keywords": [
-            "http",
-            "middleware",
-            "psr-7"
         ]
     },
     {

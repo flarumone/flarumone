@@ -6,7 +6,7 @@ core:
 
   # These strings are used in the Change Email modal dialog.
   change_email_confirmation_message: => core.confirmation_email_sent
-  change_email_go_to_button: => core.go_to_url
+  change_email_dismiss_button: => core.okay
   change_email_submit_button: => core.save_changes
   change_email_title: => core.change_email
 
@@ -64,7 +64,7 @@ core:
   edit_user_username_label: => core.username
 
   # These strings are used in the Forgot Password modal dialog.
-  forgot_password_go_to_button: => core.go_to_url
+  forgot_password_dismiss_button: => core.okay
   forgot_password_email_placeholder: => core.email
   forgot_password_email_sent_message: 我们寄一封电子邮件包含的链接重置您的密码。如果您不在一两下一分钟内收到它，请检查您的垃圾邮件文件夹
   forgot_password_submit_button: 恢复密码
@@ -158,7 +158,7 @@ core:
   sign_up_already_have_account_text: "已经有一个帐户吗？" # Final space is needed for string separation.
   sign_up_confirmation_message: => core.confirmation_email_sent
   sign_up_email_placeholder: => core.email
-  sign_up_go_to_button: => core.go_to_url
+  sign_up_dismiss_button: => core.okay
   sign_up_log_in_link: => core.log_in
   sign_up_password_placeholder: => core.password
   sign_up_submit_button: => core.sign_up
@@ -196,11 +196,11 @@ core:
   discussions: 帖子
   edit: 编辑
   email: 邮箱
-  go_to_url: "转到 {url}"
   load_more: 载入更多
   log_in: 登录
   mark_all_as_read: 全部标记为已读
   notifications: 通知
+  okay: 好
   password: 密码
   restore: 还原
   save_changes: 应用

@@ -648,12 +648,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/flarum/core.git",
-                "reference": "538a3e5e985df736defc76d7e0422eb1b9c0a3d3"
+                "reference": "4e5b3099f8adbf925a054fda0a8ed9859db81d93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flarum/core/zipball/538a3e5e985df736defc76d7e0422eb1b9c0a3d3",
-                "reference": "538a3e5e985df736defc76d7e0422eb1b9c0a3d3",
+                "url": "https://api.github.com/repos/flarum/core/zipball/4e5b3099f8adbf925a054fda0a8ed9859db81d93",
+                "reference": "4e5b3099f8adbf925a054fda0a8ed9859db81d93",
                 "shasum": ""
             },
             "require": {
@@ -682,10 +682,12 @@
                 "symfony/console": "^2.7",
                 "symfony/yaml": "^2.7",
                 "tobscure/json-api": "^0.1.1",
-                "zendframework/zend-diactoros": "^1.1"
+                "zendframework/zend-diactoros": "^1.1",
+                "zendframework/zend-stratigility": "^1.1"
             },
             "require-dev": {
-                "phpspec/phpspec": "^2.2",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8",
                 "squizlabs/php_codesniffer": "2.*"
             },
             "type": "library",
@@ -704,7 +706,7 @@
                     "email": "toby@flarum.org"
                 }
             ],
-            "time": "2015-09-25 14:14:15"
+            "time": "2015-09-29 08:16:05"
         },
         {
             "name": "franzl/whoops-middleware",
